@@ -2,8 +2,9 @@
 
 {% load static %}
 
-{% block content %}
+{% block title%} About Us-{{info.title}} {% endblock %}
 
+{% block content %}
 <!-- BREADCRUMB -->
 <div id="breadcrumb">
 	<div class="container">
@@ -24,7 +25,7 @@
         <div class="row">
             <!-- # add |safe if u have used RichTextUploadingField for it  -->
             <!-- safe gives permission to show our html data; if we donot add safe then all html tags will be present there  -->
-            {{website_about.about_us|safe}}
+            {{info.about_us|safe}}
         </div>
 		<!-- /row -->
 	</div>

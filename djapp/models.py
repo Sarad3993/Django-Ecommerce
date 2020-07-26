@@ -1,7 +1,8 @@
 from django.db import models
 from ckeditor_uploader.fields import RichTextUploadingField
 
-class Contact_settings(models.Model):
+# Lets create a model called Information whose fields can be used wherever required
+class Information(models.Model):
     STATUS = (('True', 'True'), ('False', 'False'))
     title = models.CharField(max_length=255)
     keywords = models.CharField(max_length=255)
@@ -28,3 +29,4 @@ class Contact_settings(models.Model):
 
     def __str__(self):
         return self.title
+ 

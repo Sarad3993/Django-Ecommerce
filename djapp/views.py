@@ -3,25 +3,24 @@ from django.http import HttpResponse
 from djapp.models import * 
 
 def homepage(request):
-    views = {} # create empty dictionary 
-    # now we here call the settings for contact we created in models.py as a dictionary value 
-    views['website_title'] = Contact_settings.objects.get(pk=1)
-    # to show main category in homepage only 
-    views['page'] = "homepage"
-    # pk means primary key..
-    return render(request,'index.html',views)
+    info = Information.objects.get(pk=1)
+    # pk means primary key 
 
-# def aboutus(request):
-#     return HttpResponse("About Us Page")
+    # To show main category section in homepage only we do as: 
+    page = "homepage"
+    context_var = {'info':info,'page':page}
+     # dictionary in key:value pair form 
+     # we can now call every fields inside Information model class by using key 'info' wherever required in template
+   
+    return render(request,'index.html',context_var)
 
 def aboutus(request):
-    views = {} 
-    views['website_about'] = Contact_settings.objects.get(pk=1)
- 
-    return render(request,'aboutus.html',views)
+    info = Information.objects.get(pk=1)
+    context_var = {'info':info}
+    return render(request,'aboutus.html',context_var)
 
 
 def contact(request):
-    views = {} 
-    views['website_contact'] = Contact_settings.objects.get(pk=1) 
-    return render(request,'contact.html',views)
+    info = Information.objects.get(pk=1)
+    context_var = {'info':info} 
+    return render(request,'contact.html',context_var)

@@ -7,7 +7,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title> {{website_title.title}} </title>
+    <title> {% block title %} {{info.title}} {% endblock %} </title> 
+
+    <!-- # VVI for SEO  -->
+    <meta name="keywords" content="{{info.keywords}}">
+    <meta name="description" content="{{info.description}}">
 
     <!-- Google font -->
     <link href="https://fonts.googleapis.com/css?family=Hind:400,700" rel="stylesheet">
@@ -405,7 +409,7 @@
                     <span class="menu-header">Menu <i class="fa fa-bars"></i></span>
                     <ul class="menu-list">
                         <li><a href="/">Home</a></li>
-                        <li><a href="aboutus">About Us </a> </li>
+                        <li><a href="/aboutus">About Us </a> </li>
                         <li class="dropdown mega-dropdown"><a class="dropdown-toggle" data-toggle="dropdown"
                                 aria-expanded="true">Women <i class="fa fa-caret-down"></i></a>
                             <div class="custom-menu">
@@ -554,7 +558,7 @@
                                 </div>
                             </div>
                         </li>
-                        <li><a href="contact">Contact</a></li>
+                        <li><a href="/contact">Contact</a></li>
                     </ul>
                 </div>
                 <!-- menu nav -->
