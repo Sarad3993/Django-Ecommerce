@@ -1,3 +1,8 @@
 from django.contrib import admin
+from djapp.models import *
 
-# Register your models here.
+
+class Contact_settingsAdmin(admin.ModelAdmin):
+    list_display = ['title','company','update_at','status'] 
+
+admin.site.register(Contact_settings,Contact_settingsAdmin)
