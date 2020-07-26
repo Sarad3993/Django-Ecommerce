@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.safestring import mark_safe
 
 # model for category 
 class Category(models.Model):
@@ -20,7 +21,6 @@ class Category(models.Model):
 
 
 # model for products/items  
-
 class Product(models.Model):
     STATUS = (('True', 'True'),('False', 'False'))
     # Many to one relation 
@@ -41,3 +41,18 @@ class Product(models.Model):
     def __str__(self):
         return self.title
 
+    # method to create a fake table  in read only mode
+    def image_tag(self):
+        if self.image.url is not None:
+            return mark_safe('<img src="{}" height="50"/>'.format(self.image.url))
+        else:
+            return ""
+
+# Models for products image gallery: 
+class Images(models.Model):
+    product = models.ForeignKey(Product,on_delete=models.CASCADE)# creates relation between Product table and Image table 
+    title = models.CharField(max_length=100, blank=True)
+    image = models.ImageField(upload_to='images/',blank=True)
+
+    def __str__(self):
+        return self.title 
