@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.safestring import mark_safe
+from ckeditor_uploader.fields import RichTextUploadingField
 
 # model for category 
 class Category(models.Model):
@@ -32,7 +33,7 @@ class Product(models.Model):
     price = models.FloatField()
     amount=models.IntegerField()
     min_amount=models.IntegerField()
-    details=models.TextField()
+    details= RichTextUploadingField()
     slug = models.SlugField()
     status=models.CharField(max_length=100,choices=STATUS) 
     create_at=models.DateTimeField(auto_now_add=True)
@@ -42,11 +43,12 @@ class Product(models.Model):
         return self.title
 
     # method to create a fake table  in read only mode
+    # for this we have to import mark_safe which is done above 
     def image_tag(self):
         if self.image.url is not None:
-            return mark_safe('<img src="{}" height="50"/>'.format(self.image.url))
+            return mark_safe(f'<img src="{self.image.url}" height="50"/>')
         else:
-            return ""
+            return "" 
 
 # Models for products image gallery: 
 class Images(models.Model):

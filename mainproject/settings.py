@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'djapp',
     'djproduct',
+    'ckeditor',
+    'ckeditor_uploader',
 ]
 
 MIDDLEWARE = [
@@ -123,3 +125,21 @@ STATIC_URL = '/static/'
 
 MEDIA_URL = '/uploads/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')
+
+SITE_ID = 1
+####################################
+    ##  CKEDITOR CONFIGURATION  ##
+####################################
+
+CKEDITOR_JQUERY_URL = 'https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js'
+# refers to the jquery file which CKEditor uses.
+
+CKEDITOR_UPLOAD_PATH = 'images/' # refers the directory where images will be uploaded relative to your MEDIA_ROOT(media_root directory i.e main folder is uploads and for images there is a subfolder images inside it)
+CKEDITOR_IMAGE_BACKEND = "pillow" # refers to the image library which CKEditor uses to create thumbnails to display in CKEditor gallery
+
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': None,
+    },
+}
+# refer to the settings which CKEditor uses to customize its appearance and behavior
