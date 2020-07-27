@@ -12,12 +12,19 @@ def homepage(request):
     category = Category.objects.all()
 
     slider = Product.objects.all().order_by('-id')[:3] # [:3] limits the number of slider to be shown regardless how much we have added in admin panel 
-    # if we do -id it means in descending order 
+    
+
+    latest_product = Product.objects.all().order_by('-id')[:4] 
+    # last four products
+    # if we do -id it means in descending order (i.e products added at last will be displayed)...anyway it makes sense latest products means products added at last 
+
+    picked_product = Product.objects.all().order_by('?')[:4] # randomly selected four products 
+
 
     # To show main category section in homepage only we do as:
     page = "homepage"
 
-    context_var = {'info':info, 'page':page, 'category':category, 'slider':slider }
+    context_var = {'info':info, 'page':page, 'category':category, 'slider':slider ,'latest_product':latest_product,'picked_product':picked_product}
      # context_var is a dictionary in key:value pair form 
      # we can now call every fields inside Information model class by using key 'info' wherever required in template
    

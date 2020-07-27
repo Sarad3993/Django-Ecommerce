@@ -49,18 +49,18 @@ class Category(MPTTModel):
 # model for products/items  
 class Product(models.Model):
     STATUS = (('True', 'True'),('False', 'False'))
-    # Many to one relation 
+    LABEL = (('Hot', 'Hot'), ('Sale', 'Sale'), ('New', 'New'))
     category = models.ForeignKey(Category,on_delete=models.CASCADE)
     title = models.CharField(max_length=100)
     keywords = models.CharField(max_length=300)
     description = models.TextField(max_length=300)
     image=models.ImageField(upload_to='images/', blank=True) 
     price = models.FloatField()
-    amount=models.IntegerField()
-    min_amount=models.IntegerField()
+    discounted_price = models.FloatField(blank=True)
     details= RichTextUploadingField()
     slug = models.SlugField(unique=True,null=False)
     status=models.CharField(max_length=100,choices=STATUS) 
+    label = models.CharField(max_length=100,choices=LABEL,blank=True)
     create_at=models.DateTimeField(auto_now_add=True)
     update_at=models.DateTimeField(auto_now=True)
 
