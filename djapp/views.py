@@ -1,23 +1,31 @@
 from django.shortcuts import render
 from django.http import HttpResponse , HttpResponseRedirect , request
-from djapp.models import * 
+from djapp.models import *
+from djproduct.models import *  
 from django.contrib import messages
 
 def homepage(request):
     info = Information.objects.get(pk=1)
     # pk means primary key 
 
+    category = Category.objects.all()
+
     # To show main category section in homepage only we do as: 
     page = "homepage"
-    context_var = {'info':info,'page':page}
-     # dictionary in key:value pair form 
+    context_var = {
+        'info':info,
+        'page':page,
+        'category':category,       
+        }
+     # context_var is a dictionary in key:value pair form 
      # we can now call every fields inside Information model class by using key 'info' wherever required in template
    
     return render(request,'index.html',context_var)
 
 def aboutus(request):
     info = Information.objects.get(pk=1)
-    context_var = {'info':info}
+    category = Category.objects.all()
+    context_var = {'info':info,'category':category}
     return render(request,'aboutus.html',context_var)
 
 
@@ -39,7 +47,12 @@ def contact(request):
             return HttpResponseRedirect('/contact') # redirect to contact page 
 
     info = Information.objects.get(pk=1)
+    category = Category.objects.all()
     form = ContactForm # for rendering django form in template 
-    context_var = {'info':info,'form':form} 
+    context_var = {'info':info,'form':form,'category':category} 
     return render(request,'contact.html',context_var)
 
+ 
+def category_products(request,id,slug):
+    products = Product.objects.filter(category_id=id)
+    return HttpResponse(products)

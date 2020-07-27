@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'djproduct',
     'ckeditor',
     'ckeditor_uploader',
+    'mptt',
 ]
 
 MIDDLEWARE = [

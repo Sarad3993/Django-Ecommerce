@@ -1,11 +1,19 @@
 from django.db import models
 from django.utils.safestring import mark_safe
 from ckeditor_uploader.fields import RichTextUploadingField
+from mptt.models import MPTTModel
+from mptt.fields import TreeForeignKey
+
+
 
 # model for category 
-class Category(models.Model):
+# In django there is a library called MPTT(Modified Preorder Tree Traversal) used for managing hierarchical database tables as a tree structure 
+# If we have to work with category and subcategory using MPTT makes it easy 
+# for that we first install MPTT, later import it and then inherit inside Category class 
+class Category(MPTTModel):
     STATUS = (('True', 'True'),('False', 'False'))
-    parent = models.ForeignKey('self',blank=True, null=True,related_name='children', on_delete=models.CASCADE)
+    parent = TreeForeignKey('self',blank=True, null=True,related_name='children', on_delete=models.CASCADE)
+# We must define a parent field which is a TreeForeignKey to 'self'. A TreeForeignKey is just a regular ForeignKey that renders form fields differently in the admin and a few other places.
 
     title = models.CharField(max_length=100)
     keywords = models.CharField(max_length=300)
@@ -19,6 +27,19 @@ class Category(models.Model):
 
     def __str__(self):
         return self.title
+
+    class MPTTMeta:
+        order_insertion_by = ['title']
+#That MPTTMeta class adds some tweaks to django-mptt - in this case, just order_insertion_by. This indicates the natural ordering of the data in the tree
+
+# Add this script to separate category and subcategory in admin panel dropdown menu: 
+    def __str__(self):                           
+        full_path = [self.title]                  
+        k = self.parent
+        while k is not None:
+            full_path.append(k.title)
+            k = k.parent
+        return ' / '.join(full_path) # category and subcategory are separated by /
 
 
 # model for products/items  
@@ -34,7 +55,7 @@ class Product(models.Model):
     amount=models.IntegerField()
     min_amount=models.IntegerField()
     details= RichTextUploadingField()
-    slug = models.SlugField()
+    slug = models.SlugField(unique=True,null=False)
     status=models.CharField(max_length=100,choices=STATUS) 
     create_at=models.DateTimeField(auto_now_add=True)
     update_at=models.DateTimeField(auto_now=True)

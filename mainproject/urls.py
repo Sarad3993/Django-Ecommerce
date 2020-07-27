@@ -26,4 +26,6 @@ urlpatterns = [
 ] 
 
 # we have to add this if we want images(media) to display in admin panel...for that we have to import settings and static from django which is done above 
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+# Can see in documentation about the code below 
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
