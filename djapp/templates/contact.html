@@ -24,23 +24,19 @@
         <div class="row">
             <!-- # we can change this grid as per our choice ie. we can make col-md-6 and so onl but total division must be always 12 -->
             <div class="col-md-4">
-                <form id="checkout-form" class="clearfix" method="">
-                    <div class="section-title">
-                        <h3 class="title">Get in Touch with Us</h3>
-                    </div>
-                    <div class="form-group">
-                        <input class="input" type="text" name="name" placeholder="Full Name" required="">
-                    </div>
-                    <div class="form-group">
-                        <input class="input" type="email" name="email" placeholder="Email" required="">
-                    </div>
-                    <div class="form-group">
-                        <input class="input" type="text" name="subject" placeholder="Subject" required="">
-                    </div>
-                    <div class="form-group">
-                        <textarea class="input" name="message" style="width:360px; height:160px;" placeholder="Message" required="">
-                        </textarea>
-                    </div>
+
+                <div class="section-title">
+                    <h3 class="title">Get in Touch with Us</h3>
+                </div>
+
+                <form id="checkout-form" class="clearfix" method="POST">
+                    {% csrf_token  %}
+                    <!-- Instead of creating form as above  -->
+                    <!-- We can just call {{form}} ... Django automatically creates a form for us using the details mentioned in the widgets in ContactForm class in Models  -->
+
+                    {{form.as_p}}
+
+                    <!-- .as_p will render form wrapped in <p> tags-->
 
                     <button style="cursor: pointer;
                     border: 2px solid rgb(88, 181, 196);
@@ -52,6 +48,19 @@
                     font-size: 16px;
                     padding: 7px 9px;
                     margin-top: 20px;"> Submit </button>
+                    <br>
+                    <div>
+                        <!-- # Now we should create a condition to display the success message only when the message is sent  -->
+                        {% if messages %}
+                        <!-- # And loop should run everytime to display success message if it is sent to database  -->
+                        {% for message in messages %}
+                        <div class="alert alert-{{message.tags}}" role="alert">
+                            {{message}}
+                        </div>
+                        {% endfor %}
+                        {% endif %}
+                    </div>
+
                 </form>
             </div>
 
