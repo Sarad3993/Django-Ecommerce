@@ -5,9 +5,9 @@ from mptt.admin import DraggableMPTTAdmin
 # Register models here
 
 
-class CategoryAdmin(admin.ModelAdmin):
-    list_display = ['title', 'parent', 'status']
-    list_filter = ['status']
+# class CategoryAdmin(admin.ModelAdmin):
+#     list_display = ['title', 'parent', 'status']
+#     list_filter = ['status']
 
 # Create a new CategoryAdmin
 # First import DraggableMPTTAdmin inside it 
@@ -15,7 +15,7 @@ class CategoryAdmin2(DraggableMPTTAdmin):
     mptt_indent_field = "title"
     list_display = ('tree_actions', 'indented_title','related_products_count', 'related_products_cumulative_count')
     list_display_links = ('indented_title',)
-    # prepopulated_fields = {'slug': ('title',)}
+    prepopulated_fields = {'slug': ('title',)}
     # inlines = [CategoryLangInline]
 
     def get_queryset(self, request):
@@ -53,6 +53,7 @@ class ProductAdmin(admin.ModelAdmin):
     list_filter = ['category'] # on what basis to filter the list 
     readonly_fields = ('image_tag',)
     inlines = [ProductImageInline]
+    prepopulated_fields = {'slug': ('title',)}
 
 
 admin.site.register(Category, CategoryAdmin2)

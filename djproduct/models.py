@@ -3,6 +3,7 @@ from django.utils.safestring import mark_safe
 from ckeditor_uploader.fields import RichTextUploadingField
 from mptt.models import MPTTModel
 from mptt.fields import TreeForeignKey
+from django.urls import reverse 
 
 
 
@@ -32,6 +33,9 @@ class Category(MPTTModel):
         order_insertion_by = ['title']
 #That MPTTMeta class adds some tweaks to django-mptt - in this case, just order_insertion_by. This indicates the natural ordering of the data in the tree
 
+    def get_category_url(self):
+        return reverse('category_detail',kwargs={'slug':self.slug})
+
 # Add this script to separate category and subcategory in admin panel dropdown menu: 
     def __str__(self):                           
         full_path = [self.title]                  
@@ -39,7 +43,7 @@ class Category(MPTTModel):
         while k is not None:
             full_path.append(k.title)
             k = k.parent
-        return ' / '.join(full_path) # category and subcategory are separated by /
+        return ' / '.join(full_path[::-1]) # category and subcategory are separated by / 
 
 
 # model for products/items  
