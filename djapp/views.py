@@ -4,19 +4,20 @@ from djapp.models import *
 from djproduct.models import *  
 from django.contrib import messages
 
+
 def homepage(request):
     info = Information.objects.get(pk=1)
     # pk means primary key 
 
     category = Category.objects.all()
 
-    # To show main category section in homepage only we do as: 
+    slider = Product.objects.all().order_by('-id')[:3] # [:3] limits the number of slider to be shown regardless how much we have added in admin panel 
+    # if we do -id it means in descending order 
+
+    # To show main category section in homepage only we do as:
     page = "homepage"
-    context_var = {
-        'info':info,
-        'page':page,
-        'category':category,       
-        }
+
+    context_var = {'info':info, 'page':page, 'category':category, 'slider':slider }
      # context_var is a dictionary in key:value pair form 
      # we can now call every fields inside Information model class by using key 'info' wherever required in template
    

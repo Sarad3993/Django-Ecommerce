@@ -9,4 +9,4 @@ urlpatterns = [
     path('contact/',contact,name="contact"),
     path('category/<int:id>/<slug:slug>',category_products,name="category_products")
 ]
-
+ 
