@@ -88,17 +88,34 @@
 
                     <!-- Search -->
                     <div class="header-search">
-                        <form>
-                            <input class="input search-input" type="text" placeholder="Enter your keyword">
-                            <select class="input search-categories">
+                        <form action="/search" method="GET">
+                            <input id="query" name="query" class="input search-input" type="search"
+                                placeholder="Search Product Here">
+                            <select name="cat_id" class="input search-categories">
                                 <option value="0">All Categories</option>
-                                <option value="1">Category 01</option>
-                                <option value="1">Category 02</option>
+
+                                {% load mptt_tags %}
+
+                                {% recursetree category %}
+                                <!--  if there is category only  -->
+                                {% if node.is_leaf_node %}
+                                <option value="{{node.id}}">{{node.title}}</option>
+                                {% endif %}
+                                 <!-- if there is both category and subcategory  -->
+                                {% if not node.is_leaf_node %}
+                                <optgroup label="{{node.title}}">
+                                    {{children}}
+                                </optgroup>
+                                {% endif %}
+
+                                {% endrecursetree %}
+
                             </select>
                             <button class="search-btn"><i class="fa fa-search"></i></button>
                         </form>
                     </div>
                     <!-- /Search -->
+
                 </div>
                 <div class="pull-right">
                     <ul class="header-btns">
@@ -114,7 +131,6 @@
                             <ul class="custom-menu">
                                 <li><a href="#"><i class="fa fa-user-o"></i> My Account</a></li>
                                 <li><a href="#"><i class="fa fa-heart-o"></i> My Wishlist</a></li>
-                                <li><a href="#"><i class="fa fa-exchange"></i> Compare</a></li>
                                 <li><a href="#"><i class="fa fa-check"></i> Checkout</a></li>
                                 <li><a href="#"><i class="fa fa-unlock-alt"></i> Login</a></li>
                                 <li><a href="#"><i class="fa fa-user-plus"></i> Create An Account</a></li>
@@ -189,22 +205,24 @@
             <div id="responsive-nav">
                 <!-- category nav -->
                 <!-- If it is homepage whole category is displayed else for other page we have to click and display the category section  -->
-                {% if page %} 
+                {% if page %}
                 <div class="category-nav">
                     {% else %}
                     <div class="category-nav show-on-click">
                         {% endif %}
 
-                        <span class="category-header">Categories <i class="fa fa-list"></i></span>
+                        <span class="category-header">Categories<i class="fa fa-list"></i></span>
 
                         {% load mptt_tags %}
-                      
+
                         <ul class="category-list">
 
                             {% recursetree category %}
 
                             <li class="dropdown side-dropdown">
-                                <a href="/category/{{node.id}}/{{node.slug}}" class="dropdown-toggle"  {% if not node.is_leaf_node %} data-toggle="dropdown" aria-expanded="true" {% endif %}>{{ node.title }}
+                                <a href="/category/{{node.id}}/{{node.slug}}" class="dropdown-toggle"
+                                    {% if not node.is_leaf_node %} data-toggle="dropdown" aria-expanded="true"
+                                    {% endif %}>{{ node.title }}
                                     <i class="fa fa-angle-right"></i></a>
                                 <div class="custom-menu">
                                     <div class="row">
@@ -214,9 +232,9 @@
 
                                             <ul class="list-links">
                                                 <li><a href="#">{{children}}</a></li>
-                                              
+
                                             </ul>
-                                             {% endif %}
+                                            {% endif %}
                                             <hr class="hidden-md hidden-lg">
                                         </div>
                                     </div>

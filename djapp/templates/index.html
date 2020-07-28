@@ -16,7 +16,7 @@
 				<!-- banner -->
 				{% for slide in slider %}
 				<div class="banner banner-1">
-					<img src= "{{slide.image.url}}" alt="Error loading image" height="500" width="400">
+					<img src="{{slide.image.url}}" alt="Error loading image" height="500" width="400">
 					<div class="banner-caption text-center">
 						<h1>{{slide.title}}</h1>
 						<h3 class="white-color font-weak"> Rs.{{slide.price}}</h3>
@@ -59,14 +59,15 @@
 							<span> {{product.label}}</span>
 						</div>
 						{% endif %}
-						<a href="/product/{{product.id}}/{{product.slug}}" class="main-btn quick-view"><i class="fa fa-search-plus"></i> Quick view</a>
+						<a href="/product/{{product.id}}/{{product.slug}}" class="main-btn quick-view"><i
+								class="fa fa-search-plus"></i> Quick view</a>
 						<img src="{{product.image.url}}" alt="Error loading image" height="200" width="200">
 					</div>
-					
+
 					<div class="product-body">
 						{% if product.discounted_price > 0 %}
 						<h3 class="product-price">Rs.{{product.discounted_price}}
-						<del class="product-old-price">Rs.{{product.price}}</del>
+							<del class="product-old-price">Rs.{{product.price}}</del>
 						</h3>
 						{% else %}
 						<h3 class="product-price"> Rs.{{product.price}}</h3>
@@ -79,17 +80,19 @@
 							<i class="fa fa-star"></i>
 							<i class="fa fa-star-o empty"></i>
 						</div>
-						<h2 class="product-name"><a href="/product/{{product.id}}/{{product.slug}}">{{product.title}}</a></h2>
+						<h2 class="product-name"><a
+								href="/product/{{product.id}}/{{product.slug}}">{{product.title}}</a></h2>
 						<div class="product-btns">
 							<button class="main-btn icon-btn"><i class="fa fa-heart"></i></button>
-							<a href="/addtocart/{{product.id}}" class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> Add to
+							<a href="/addtocart/{{product.id}}" class="primary-btn add-to-cart"><i
+									class="fa fa-shopping-cart"></i> Add to
 								Cart</a>
 						</div>
 					</div>
 				</div>
 			</div>
 			{% endfor %}
-		<!-- /Product Single -->
+			<!-- /Product Single -->
 		</div>
 		<!-- /row -->
 
@@ -113,14 +116,15 @@
 							<span> {{p_product.label}}</span>
 						</div>
 						{% endif %}
-						<a href="/product/{{product.id}}/{{product.slug}}" class="main-btn quick-view"><i class="fa fa-search-plus"></i> Quick view</a>
+						<a href="/product/{{product.id}}/{{product.slug}}" class="main-btn quick-view"><i
+								class="fa fa-search-plus"></i> Quick view</a>
 						<img src="{{p_product.image.url}}" alt="Error loading image" height="200" width="200">
 					</div>
-					
+
 					<div class="product-body">
 						{% if p_product.discounted_price > 0 %}
 						<h3 class="product-price">Rs.{{p_product.discounted_price}}
-						<del class="product-old-price">Rs.{{p_product.price}}</del>
+							<del class="product-old-price">Rs.{{p_product.price}}</del>
 						</h3>
 						{% else %}
 						<h3 class="product-price"> Rs.{{p_product.price}}</h3>
@@ -133,19 +137,21 @@
 							<i class="fa fa-star"></i>
 							<i class="fa fa-star-o empty"></i>
 						</div>
-						<h2 class="product-name"><a href="/product/{{product.id}}/{{product.slug}}">{{p_product.title}}</a></h2>
+						<h2 class="product-name"><a
+								href="/product/{{product.id}}/{{product.slug}}">{{p_product.title}}</a></h2>
 						<div class="product-btns">
 							<button class="main-btn icon-btn"><i class="fa fa-heart"></i></button>
-							<a href="/addtocart/{{product.id}}" class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> Add to
+							<a href="/addtocart/{{product.id}}" class="primary-btn add-to-cart"><i
+									class="fa fa-shopping-cart"></i> Add to
 								Cart</a>
 						</div>
 					</div>
 				</div>
 			</div>
-			{% endfor %}
-		<!-- /Product Single -->
+		{% endfor %}
+			<!-- /Product Single -->
 
-		
+
 		</div>
 		<!-- /row -->
 	</div>

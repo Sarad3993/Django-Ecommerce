@@ -3,6 +3,7 @@ from django.http import HttpResponse , HttpResponseRedirect , request
 from djapp.models import *
 from djproduct.models import *  
 from django.contrib import messages
+from djapp.forms import *
 
 
 def homepage(request):
@@ -67,4 +68,26 @@ def category_products(request,id,slug):
     context_var = {'category':category,'products':products}
 
     return render(request,'products.html',context_var)
+
+
+def search(request):
+    if request.method == 'GET':
+        form = SearchForm(request.GET)
+        if form.is_valid():
+            query = form.cleaned_data['query'] # get input data from form 
+            cat_id = form.cleaned_data['cat_id'] # get input data when user clicks certain category
+
+            if cat_id == 0:  # means if there is no any specific category ; represents all categories  
+                products=Product.objects.filter(title__icontains=query)
+                # this query is same as of SQL:  SELECT * FROM product WHERE title =  '%query%'
+                # if we use __icontains it means we ignore case sensitivity (meaning user can search in both uppercase and lowercase;still it shows the result)
+            else:
+                products = Product.objects.filter(title__icontains=query, category_id=cat_id)
+
+            category = Category.objects.all()
+            context_var = {'category':category,'products':products,'query':query}
+            return render(request,'search_products.html',context_var)
+    
+    return HttpResponseRedirect('/') # redirects to Homepage if it doesnot find any POST method 
+            
     
