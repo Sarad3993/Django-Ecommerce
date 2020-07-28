@@ -4,6 +4,6 @@ from djproduct.views import *
 app_name = 'djproduct'
 
 urlpatterns = [
-    path('',product, name= 'product'),
+    
 
 ]

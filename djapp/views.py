@@ -73,7 +73,7 @@ def category_products(request, id, slug):
 
     return render(request, 'products.html', context_var)
 
-
+# for search functionality 
 def search(request):
     if request.method == 'GET':
         form = SearchForm(request.GET)
@@ -115,3 +115,13 @@ def search_auto_complete(request):
         data = 'fail'
     mimetype = 'application/json'
     return HttpResponse(data, mimetype)
+
+
+# for single product detail 
+def product_detail(request, id, slug):
+    category = Category.objects.all()
+    product = Product.objects.get(pk=id)
+    images = Images.objects.filter(product_id=id)
+    context_var = {'category': category, 'product': product,'images':images}
+
+    return render(request,'product_detail.html', context_var) 

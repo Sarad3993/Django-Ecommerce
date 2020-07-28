@@ -183,7 +183,7 @@
 
 						{% for pro in products %}
 							<tr>
-								<td class="thumb"><a href="/product{{pro.id}}/{{pro.sl}}">
+								<td class="thumb"><a href="/product/{{pro.id}}/{{pro.slug}}">
 									<img src="{{ pro.image.url }}" alt="Error loading image" style="height: 100px">
 								</a></td>
 								<td class="details"> <a href="/product/{{pro.id}}/{{pro.slug}}">{{ pro.title }}</a>	</td>

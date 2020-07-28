@@ -2,8 +2,8 @@
 
 {% load static %}
 
-{% block content %}
 
+{% block content %}
 <!-- HOME -->
 <div id="home">
 	<!-- container -->
@@ -116,7 +116,7 @@
 							<span> {{p_product.label}}</span>
 						</div>
 						{% endif %}
-						<a href="/product/{{product.id}}/{{product.slug}}" class="main-btn quick-view"><i
+						<a href="/product/{{p_product.id}}/{{p_product.slug}}" class="main-btn quick-view"><i
 								class="fa fa-search-plus"></i> Quick view</a>
 						<img src="{{p_product.image.url}}" alt="Error loading image" height="200" width="200">
 					</div>
@@ -138,10 +138,10 @@
 							<i class="fa fa-star-o empty"></i>
 						</div>
 						<h2 class="product-name"><a
-								href="/product/{{product.id}}/{{product.slug}}">{{p_product.title}}</a></h2>
+								href="/product/{{p_product.id}}/{{p_product.slug}}">{{p_product.title}}</a></h2>
 						<div class="product-btns">
 							<button class="main-btn icon-btn"><i class="fa fa-heart"></i></button>
-							<a href="/addtocart/{{product.id}}" class="primary-btn add-to-cart"><i
+							<a href="/addtocart/{{p_product.id}}" class="primary-btn add-to-cart"><i
 									class="fa fa-shopping-cart"></i> Add to
 								Cart</a>
 						</div>
