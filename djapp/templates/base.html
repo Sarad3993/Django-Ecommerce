@@ -33,6 +33,12 @@
     <!-- Custom stlylesheet -->
     <link type="text/css" rel="stylesheet" href="{% static 'css/style.css' %}" />
 
+    <!-- # for autocomplete search add these links separately -->
+    <!-- jQuery !-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"> </script>
+    <!-- jQuery UI !-->
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
 
 </head>
 
@@ -86,6 +92,28 @@
                     </div>
                     <!-- /Logo -->
 
+                    <!-- add this script for autocomplete search  -->
+                    <script>
+
+                        $( function ()
+                        {
+                            $( "#query" ).autocomplete( {
+                                source: "/search_auto_complete",
+                                select: function (event, ui)
+                                { 
+                                    AutoCompleteSelectHandler( event, ui )
+                                },
+                                minLength: 2,
+                            } );
+                        } );
+
+                        function AutoCompleteSelectHandler( event, ui )
+                        {
+                            var selectedObj = ui.item;
+                        }
+
+                    </script>
+
                     <!-- Search -->
                     <div class="header-search">
                         <form action="/search" method="GET">
@@ -101,7 +129,7 @@
                                 {% if node.is_leaf_node %}
                                 <option value="{{node.id}}">{{node.title}}</option>
                                 {% endif %}
-                                 <!-- if there is both category and subcategory  -->
+                                <!-- if there is both category and subcategory  -->
                                 {% if not node.is_leaf_node %}
                                 <optgroup label="{{node.title}}">
                                     {{children}}
@@ -520,7 +548,7 @@
         <!-- /FOOTER -->
 
         <!-- jQuery Plugins -->
-        <script src="{% static 'js/jquery.min.js' %}"></script>
+
         <script src="{% static 'js/bootstrap.min.js' %}"></script>
         <script src="{% static 'js/slick.min.js' %}"></script>
         <script src="{% static 'js/nouislider.min.js' %}"></script>
