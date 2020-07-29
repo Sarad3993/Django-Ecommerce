@@ -76,9 +76,10 @@ class Product(models.Model):
     # for this we have to import mark_safe which is done above 
     def image_tag(self):
         if self.image.url is not None:
-            return mark_safe(f'<img src="{self.image.url}" height="50"/>')
+            return mark_safe(f'<img src="{self.image.url}" height="55"/>')
         else:
-            return "" 
+            return ""
+    image_tag.short_description = 'Image' # title for images in admin products section  
 
 # Model for products image gallery: 
 class Images(models.Model):

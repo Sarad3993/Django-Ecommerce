@@ -23,6 +23,7 @@ urlpatterns = [
     path('', include('djapp.urls')),
     path('product/', include('djproduct.urls')),
     path('ckeditor/', include('ckeditor_uploader.urls')),
+    path('user/',include('djuser.urls')),
 ] 
 
 # we have to add this if we want images(media) to display in admin panel...for that we have to import settings and static from django which is done above 
