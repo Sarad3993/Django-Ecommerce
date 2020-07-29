@@ -11,6 +11,7 @@ class Contact_MessageAdmin(admin.ModelAdmin):
     readonly_fields = ('name','email','subject','message','user_ip_address')
     list_filter =['status'] 
 
+
 admin.site.register(Information,InformationAdmin)
 
 admin.site.register(Contact_Message,Contact_MessageAdmin)

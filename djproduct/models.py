@@ -92,7 +92,7 @@ class Images(models.Model):
 
 # Model for user reviews/comments:
 class User_Reviews(models.Model):
-    STATUS= (('New','New'),('Read','Read'),('Closed','Closed'))
+    STATUS= (('New','New'),('Read','Read'),('True','True')) 
     product = models.ForeignKey(Product,on_delete=models.CASCADE) # we have relation with Product model 
     user = models.ForeignKey(User,on_delete=models.CASCADE)
     subject = models.CharField(max_length=400,blank=True)
