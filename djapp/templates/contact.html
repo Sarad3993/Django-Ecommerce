@@ -23,15 +23,16 @@
         <!-- row -->
         <div class="row">
             <!-- # we can change this grid as per our choice ie. we can make col-md-6 and so onl but total division must be always 12 -->
-            <div class="col-md-4">
+            <div class="col-md-5">
 
                 <div class="section-title">
                     <h3 class="title">Get in Touch with Us</h3>
                 </div>
 
-                <form id="checkout-form" class="clearfix" method="POST">
+                <form id="checkout-form" class="clearfix" method="POST"> 
                     {% csrf_token  %}
-                    <!-- Instead of creating form as above  -->
+
+                    <!-- Instead of creating form separately  -->
                     <!-- We can just call {{form}} ... Django automatically creates a form for us using the details mentioned in the widgets in ContactForm class in Models  -->
 
                     {{form.as_p}}
@@ -40,7 +41,7 @@
 
                     <button style="cursor: pointer;
                     border: 2px solid rgb(88, 181, 196);
-                    border-radius: 7px;
+                    border-radius: 6px;
                     color: white;
                     background-color: black;
                     display: block;
@@ -64,7 +65,7 @@
                 </form>
             </div>
 
-            <div class="col-md-8">
+            <div class="col-md-7">
                 <div class="shiping-methods">
                     <div class="section-title">
                         <h3 class="title">Contact Information </h3>
