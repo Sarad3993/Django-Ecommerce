@@ -4,10 +4,11 @@ from ckeditor_uploader.fields import RichTextUploadingField
 from mptt.models import MPTTModel
 from mptt.fields import TreeForeignKey
 from django.urls import reverse 
+from django.contrib.auth.models import User 
+from django.forms import ModelForm ,TextInput, Textarea
 
 
-
-# model for category 
+# Model for category 
 # In django there is a library called MPTT(Modified Preorder Tree Traversal) used for managing hierarchical database tables as a tree structure 
 # If we have to work with category and subcategory using MPTT makes it easy 
 # for that we first install MPTT, later import it and then inherit inside Category class 
@@ -46,7 +47,7 @@ class Category(MPTTModel):
         return ' / '.join(full_path[::-1]) # category and subcategory are separated by / 
 
 
-# model for products/items  
+# Model for products/items  
 class Product(models.Model):
     STATUS = (('True', 'True'),('False', 'False'))
     LABEL = (('Hot', 'Hot'), ('Sale', 'Sale'), ('New', 'New'))
@@ -79,7 +80,7 @@ class Product(models.Model):
         else:
             return "" 
 
-# Models for products image gallery: 
+# Model for products image gallery: 
 class Images(models.Model):
     product = models.ForeignKey(Product,on_delete=models.CASCADE)# creates relation between Product table and Image table 
     title = models.CharField(max_length=100, blank=True)
@@ -89,3 +90,28 @@ class Images(models.Model):
         return self.title
 
 
+# Model for user reviews/comments:
+class User_Reviews(models.Model):
+    STATUS= (('New','New'),('Read','Read'),('Closed','Closed'))
+    product = models.ForeignKey(Product,on_delete=models.CASCADE) # we have relation with Product model 
+    user = models.ForeignKey(User,on_delete=models.CASCADE)
+    subject = models.CharField(max_length=400,blank=True)
+    comment = models.TextField()
+    rating = models.IntegerField(default=1)
+    user_ip_address = models.CharField(max_length=50,blank=True)
+    status=models.CharField(max_length=100,choices=STATUS,default="New")
+    create_at=models.DateTimeField(auto_now_add=True)
+    update_at=models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.subject
+
+
+# for user review/comments input form: 
+class User_ReviewsForm(ModelForm):
+    class Meta:
+        model = User_Reviews
+        fields = ['subject','comment','rating']
+
+
+    

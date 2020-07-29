@@ -61,7 +61,7 @@ def contact(request):
 
     info = Information.objects.get(pk=1)
     category = Category.objects.all()
-    form = ContactForm  # for rendering django form in template
+    form = ContactForm  # for rendering django modelform in template
     context_var = {'info': info, 'form': form, 'category': category}
     return render(request, 'contact.html', context_var)
 
@@ -125,3 +125,25 @@ def product_detail(request, id, slug):
     context_var = {'category': category, 'product': product,'images':images}
 
     return render(request,'product_detail.html', context_var) 
+
+ 
+# for product user review:
+def addcomment(request,id):
+    url = request.META.get('HTTP_REFERER') # return back to the last url(after user submits review we have to return to same product page)
+    if request.method == 'POST':
+        form = User_ReviewsForm(request.POST)
+        if form.is_valid():
+            data = User_Reviews() 
+            data.subject = form.cleaned_data['subject']
+            data.comment = form.cleaned_data['comment']
+            data.rating = form.cleaned_data['rating']
+            data.user_ip_address = request.META.get('REMOTE_ADDR')
+            data.product_id = id 
+            current_user = request.user  
+            data.user_id = current_user.id 
+            data.save()
+            messages.success(request, "Thank You for your interest !!! Review has been sent")
+            return HttpResponseRedirect(url) 
+      
+
+    return HttpResponseRedirect(url) # if POST method is not found directly redirects to same product page 

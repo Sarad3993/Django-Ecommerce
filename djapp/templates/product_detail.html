@@ -62,203 +62,223 @@
 
 				<div class="col-md-6">
 					<div class="product-body">
+						{% if product.label %}
 						<div class="product-label">
-							<span>{{product.label}}</span>
+							<span> {{product.label}}</span>
 							<span class="sale">-20%</span>
 						</div>
-						<h2 class="product-name">{{product.title}}</h2>
-						{% if product.discounted_price > 0 %}
-						<h3 class="product-price">Rs.{{product.discounted_price}} <del
-								class="product-old-price">Rs.{{product.price}}</del></h3>
-						{% else %}
-						<h3 class="product-price">Rs.{{product.price}}
-							{% endif %}
-							<div>
-								<div class="product-rating">
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star-o empty"></i>
-								</div>
-								<a href="#">3 Review(s) / Add Review</a>
-							</div>
-							<p><strong>Availability:</strong>{{product.stock}}</p>
-							<p><strong>Brand:</strong> {{product.brand}}</p>
-							<p> {{product.description}} </p>
-							<div class="product-options">
-								<ul class="size-option">
-									<li><span class="text-uppercase">Size:</span></li>
-									<li class="active"><a href="#">S</a></li>
-									<li><a href="#">XL</a></li>
-									<li><a href="#">SL</a></li>
-								</ul>
-								<ul class="color-option">
-									<li><span class="text-uppercase">Color:</span></li>
-									<li class="active"><a href="#" style="background-color:#475984;"></a></li>
-									<li><a href="#" style="background-color:#8A2454;"></a></li>
-									<li><a href="#" style="background-color:#BF6989;"></a></li>
-									<li><a href="#" style="background-color:#9A54D8;"></a></li>
-								</ul>
-							</div>
-
-							<div class="product-btns">
-								<div class="qty-input">
-									<span class="text-uppercase">QTY: </span>
-									<input class="input" type="number">
-								</div>
-								<button class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> Add to
-									Cart</button>
-								<div class="pull-right">
-									<button class="main-btn icon-btn"><i class="fa fa-heart"></i></button>
-									<button class="main-btn icon-btn"><i class="fa fa-exchange"></i></button>
-									<button class="main-btn icon-btn"><i class="fa fa-share-alt"></i></button>
-								</div>
-							</div>
+						{% endif %}
 					</div>
-				</div>
-				<div class="col-md-12">
-					<div class="product-tab">
-						<ul class="tab-nav">
-							<li class="active"><a data-toggle="tab" href="#tab1">Details</a></li>
-
-							<li><a data-toggle="tab" href="#tab2">Reviews (3)</a></li>
-						</ul>
-						<div class="tab-content">
-							<div id="tab1" class="tab-pane fade in active">
-								<p>{{product.details|safe}}</p>
+					<h2 class="product-name"> {{product.title}}</h2>
+					{% if product.discounted_price > 0 %}
+					<h3 class="product-price">Rs.{{product.discounted_price}} <del
+							class="product-old-price">Rs.{{product.price}}</del></h3>
+					{% else %}
+					<h3 class="product-price">Rs.{{product.price}}
+						{% endif %}
+						<div>
+							<div class="product-rating">
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star-o empty"></i>
 							</div>
-							<div id="tab2" class="tab-pane fade in">
-								<div class="row">
-									<div class="col-md-6">
-										<div class="product-reviews">
-											<div class="single-review">
-												<div class="review-heading">
-													<div><a href="#"><i class="fa fa-user-o"></i> John</a></div>
-													<div><a href="#"><i class="fa fa-clock-o"></i> 27 DEC 2017 / 8:0
-															PM</a></div>
-													<div class="review-rating pull-right">
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star-o empty"></i>
-													</div>
-												</div>
-												<div class="review-body">
-													<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-														eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut
-														enim ad minim veniam, quis nostrud exercitation ullamco laboris
-														nisi ut aliquip ex ea commodo consequat.Duis aute
-														irure dolor in reprehenderit in voluptate velit esse cillum
-														dolore eu fugiat nulla pariatur.</p>
+							<a href="#">3 Review(s) / Add Review</a>
+						</div>
+						<p><strong>Availability:</strong>{{product.stock}}</p>
+						<p><strong>Brand:</strong> {{product.brand}}</p>
+						<p> {{product.description}} </p>
+						<div class="product-options">
+							<ul class="size-option">
+								<li><span class="text-uppercase">Size:</span></li>
+								<li class="active"><a href="#">S</a></li>
+								<li><a href="#">XL</a></li>
+								<li><a href="#">SL</a></li>
+							</ul>
+							<ul class="color-option">
+								<li><span class="text-uppercase">Color:</span></li>
+								<li class="active"><a href="#" style="background-color:#475984;"></a></li>
+								<li><a href="#" style="background-color:#8A2454;"></a></li>
+								<li><a href="#" style="background-color:#BF6989;"></a></li>
+								<li><a href="#" style="background-color:#9A54D8;"></a></li>
+							</ul>
+						</div>
+
+						<div class="product-btns">
+							<div class="qty-input">
+								<span class="text-uppercase">QTY: </span>
+								<input class="input" type="number">
+							</div>
+							<button class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> Add to
+								Cart</button>
+							<div class="pull-right">
+								<button class="main-btn icon-btn"><i class="fa fa-heart"></i></button>
+								<button class="main-btn icon-btn"><i class="fa fa-exchange"></i></button>
+								<button class="main-btn icon-btn"><i class="fa fa-share-alt"></i></button>
+							</div>
+						</div>
+				</div>
+			</div>
+			<div class="col-md-12">
+				<div class="product-tab">
+					<ul class="tab-nav">
+						<li class="active"><a data-toggle="tab" href="#tab1">Details</a></li>
+
+						<li><a data-toggle="tab" href="#tab2">Reviews(3)</a></li>
+					</ul>
+					<div class="tab-content">
+						<div id="tab1" class="tab-pane fade in active">
+							<p>{{product.details|safe}}</p>
+						</div>
+
+						<div id="tab2" class="tab-pane fade in">
+							<div class="row">
+								<div class="col-md-6">
+									<div class="product-reviews">
+										<div class="single-review">
+											<div class="review-heading">
+												<div><a href="#"><i class="fa fa-user-o"></i> John</a></div>
+												<div><a href="#"><i class="fa fa-clock-o"></i> 27 DEC 2017 / 8:0
+														PM</a></div>
+												<div class="review-rating pull-right">
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star-o empty"></i>
 												</div>
 											</div>
-
-											<div class="single-review">
-												<div class="review-heading">
-													<div><a href="#"><i class="fa fa-user-o"></i> John</a></div>
-													<div><a href="#"><i class="fa fa-clock-o"></i> 27 DEC 2017 / 8:0
-															PM</a></div>
-													<div class="review-rating pull-right">
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star-o empty"></i>
-													</div>
-												</div>
-												<div class="review-body">
-													<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-														eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut
-														enim ad minim veniam, quis nostrud exercitation ullamco laboris
-														nisi ut aliquip ex ea commodo consequat.Duis aute
-														irure dolor in reprehenderit in voluptate velit esse cillum
-														dolore eu fugiat nulla pariatur.</p>
-												</div>
+											<div class="review-body">
+												<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+													eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut
+													enim ad minim veniam, quis nostrud exercitation ullamco laboris
+													nisi ut aliquip ex ea commodo consequat.Duis aute
+													irure dolor in reprehenderit in voluptate velit esse cillum
+													dolore eu fugiat nulla pariatur.</p>
 											</div>
-
-											<div class="single-review">
-												<div class="review-heading">
-													<div><a href="#"><i class="fa fa-user-o"></i> John</a></div>
-													<div><a href="#"><i class="fa fa-clock-o"></i> 27 DEC 2017 / 8:0
-															PM</a></div>
-													<div class="review-rating pull-right">
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star-o empty"></i>
-													</div>
-												</div>
-												<div class="review-body">
-													<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-														eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut
-														enim ad minim veniam, quis nostrud exercitation ullamco laboris
-														nisi ut aliquip ex ea commodo consequat.Duis aute
-														irure dolor in reprehenderit in voluptate velit esse cillum
-														dolore eu fugiat nulla pariatur.</p>
-												</div>
-											</div>
-
-											<ul class="reviews-pages">
-												<li class="active">1</li>
-												<li><a href="#">2</a></li>
-												<li><a href="#">3</a></li>
-												<li><a href="#"><i class="fa fa-caret-right"></i></a></li>
-											</ul>
 										</div>
-									</div>
-									<div class="col-md-6">
-										<h4 class="text-uppercase">Write Your Review</h4>
-										<p>Your email address will not be published.</p>
-										<form class="review-form">
-											<div class="form-group">
-												<input class="input" type="text" placeholder="Your Name" />
-											</div>
-											<div class="form-group">
-												<input class="input" type="email" placeholder="Email Address" />
-											</div>
-											<div class="form-group">
-												<textarea class="input" placeholder="Your review"></textarea>
-											</div>
-											<div class="form-group">
-												<div class="input-rating">
-													<strong class="text-uppercase">Your Rating: </strong>
-													<div class="stars">
-														<input type="radio" id="star5" name="rating" value="5" /><label
-															for="star5"></label>
-														<input type="radio" id="star4" name="rating" value="4" /><label
-															for="star4"></label>
-														<input type="radio" id="star3" name="rating" value="3" /><label
-															for="star3"></label>
-														<input type="radio" id="star2" name="rating" value="2" /><label
-															for="star2"></label>
-														<input type="radio" id="star1" name="rating" value="1" /><label
-															for="star1"></label>
-													</div>
+
+										<div class="single-review">
+											<div class="review-heading">
+												<div><a href="#"><i class="fa fa-user-o"></i> John</a></div>
+												<div><a href="#"><i class="fa fa-clock-o"></i> 27 DEC 2017 / 8:0
+														PM</a></div>
+												<div class="review-rating pull-right">
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star-o empty"></i>
 												</div>
 											</div>
-											<button class="primary-btn">Submit</button>
-										</form>
+											<div class="review-body">
+												<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+													eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut
+													enim ad minim veniam, quis nostrud exercitation ullamco laboris
+													nisi ut aliquip ex ea commodo consequat.Duis aute
+													irure dolor in reprehenderit in voluptate velit esse cillum
+													dolore eu fugiat nulla pariatur.</p>
+											</div>
+										</div>
+
+										<div class="single-review">
+											<div class="review-heading">
+												<div><a href="#"><i class="fa fa-user-o"></i> John</a></div>
+												<div><a href="#"><i class="fa fa-clock-o"></i> 27 DEC 2017 / 8:0
+														PM</a></div>
+												<div class="review-rating pull-right">
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star-o empty"></i>
+												</div>
+											</div>
+											<div class="review-body">
+												<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+													eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut
+													enim ad minim veniam, quis nostrud exercitation ullamco laboris
+													nisi ut aliquip ex ea commodo consequat.Duis aute
+													irure dolor in reprehenderit in voluptate velit esse cillum
+													dolore eu fugiat nulla pariatur.</p>
+											</div>
+										</div>
+
+										<ul class="reviews-pages">
+											<li class="active">1</li>
+											<li><a href="#">2</a></li>
+											<li><a href="#">3</a></li>
+											<li><a href="#"><i class="fa fa-caret-right"></i></a></li>
+										</ul>
 									</div>
 								</div>
+								<div class="col-md-6">
+									<h4 class="text-uppercase">Write Your Review</h4>
+
+									<form class="review-form" action="/product/addcomment/{{product.id}}" method="POST">
+										{% csrf_token %}
+
+										<div class="form-group">
+											<input name="subject" class="input" type="text"
+												placeholder="Your subject" />
+										</div>
+
+
+										<div class="form-group">
+											<textarea name="comment" class="input"
+												placeholder="Leave your review here"></textarea>
+										</div>
+
+										<div class="form-group">
+											<div class="input-rating">
+												<strong class="text-uppercase">Your Rating: </strong>
+												<div class="stars">
+													<input type="radio" id="star5" name="rating" value="5" /><label
+														for="star5"></label>
+													<input type="radio" id="star4" name="rating" value="4" /><label
+														for="star4"></label>
+													<input type="radio" id="star3" name="rating" value="3" /><label
+														for="star3"></label>
+													<input type="radio" id="star2" name="rating" value="2" /><label
+														for="star2"></label>
+													<input type="radio" id="star1" name="rating" value="1" /><label
+														for="star1"></label>
+												</div>
+											</div>
+										</div>
+										<!-- Submit review only if the user is logged in  -->
+
+										{% if user.id is not None %}
+										<button class="primary-btn">Submit</button>
+										{% else %}
+										You must be logged in to post a review
+										{% endif %}
+									</form>
+
+								</div>
+								<!-- for success message display after submitting review  -->
+								<br>
+								{% if messages %}
+								{% for message in messages %}
+								<div class="alert alert-{{message.tags}}" role="alert">
+									{{message}}
+								</div>
+								{% endfor %}
+								{% endif %}
 							</div>
 						</div>
 					</div>
 				</div>
-
 			</div>
-			<!-- /Product Details -->
+
 		</div>
-		<!-- /row -->
+		<!-- /Product Details -->
 	</div>
-	<!-- /container -->
+	<!-- /row -->
+</div>
+<!-- /container -->
 </div>
 <!-- /section -->
-
-
-
-
 
 {% endblock %}

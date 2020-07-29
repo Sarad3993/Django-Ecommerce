@@ -1,5 +1,5 @@
 from django.urls import path
-from djapp.views import *
+from djapp.views import * 
 
 app_name = 'djapp'
 
@@ -11,7 +11,7 @@ urlpatterns = [
     path('search/',search,name="search"),
     path('search_auto_complete/',search_auto_complete,name="search_auto_complete"),
     path('product/<int:id>/<slug:slug>',product_detail, name='product_detail'),
+    path('product/addcomment/<int:id>',addcomment,name="addcomment"),
     
-
 ]
  
