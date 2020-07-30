@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title%} {{user.first_name}} Profile Update {% endblock %}
+
+{% block content %}
+<!-- BREADCRUMB -->
+<div id="breadcrumb">
+    <div class="container">
+        <ul class="breadcrumb">
+            <li><a href="/">Home</a></li>
+            <li class="active">User Profile Update </li>
+        </ul>
+    </div>
+</div>
+<!-- /BREADCRUMB -->
+
+
+<!-- section -->
+<div class="section">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+
+            <div class="col-md-4">
+                {% include "user_panel.html" %}
+            </div>
+
+            <div class="col-md-6">
+
+                <div class="section-title">
+                    <h3 class="title"> User Profile Update</h3>
+                </div>
+                
+                <form method="POST" enctype="multipart/form-data"> <!-- enctype is for file upload  -->
+                    {% csrf_token %}
+                    <fieldset class="form-group">
+                        {{ user_form.as_p  }}
+                        {{ profile_form.as_p  }}
+                    </fieldset>
+
+                    <button style="cursor: pointer;
+                    border: 2px solid rgb(88, 181, 196);
+                    border-radius: 6px;
+                    color: white;
+                    background-color: black;
+                    display: block;
+                    width: 100%;
+                    font-size: 16px;
+                    padding: 7px 9px;
+                    margin-top: 20px;"> Update </button>
+                </form>
+
+            </div>
+
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+</div>
+<!-- /section -->
+
+{% endblock %}

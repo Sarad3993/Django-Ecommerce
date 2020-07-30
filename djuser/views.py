@@ -5,10 +5,11 @@ from djuser.models import *
 from django.contrib.auth import authenticate, login , logout
 from django.contrib import messages
 from django.contrib.auth.models import User
-from django.contrib.auth.decorators import login_required 
+from django.contrib.auth.decorators import login_required
+from djuser.forms import * 
 
 
-# Create your views here.
+# for user account / user profile info section 
 @login_required(login_url='/user/login') # checks for login
 def index(request):
     category = Category.objects.all()
@@ -93,8 +94,31 @@ def login_form(request):
     return render(request,'login.html',context_var)
 
 
-
 # for log out/ sign out:
 def logout_function(request):
     logout(request)
     return redirect('/')
+
+
+# for user profile update:
+@login_required(login_url='/user/login') # checks for login
+def user_profile_update(request):
+    if request.method == 'POST': 
+        user_form = UserUpdateForm(request.POST, instance=request.user) # request.user is user's data sent from form 
+        profile_form = UserProfileUpdateForm(request.POST, request.FILES, instance=request.user.userprofileinfo) # one to one relation of user_profile data with user data 
+
+        if user_form.is_valid() and profile_form.is_valid(): # check validation
+            user_form.save() # saves to database 
+            profile_form.save()
+            messages.success(request, 'Your account has been updated successfully!')
+            return redirect('/user') # redirect to user profile page so that user can see the changes made 
+    else:
+        category = Category.objects.all()
+        user_form = UserUpdateForm(instance=request.user)
+        profile_form = UserProfileUpdateForm(instance=request.user.userprofileinfo) 
+        context_var = {
+            'category': category,
+            'user_form': user_form,
+            'profile_form': profile_form
+        }
+        return render(request, 'user_profile_update.html', context_var)
