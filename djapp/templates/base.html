@@ -154,8 +154,8 @@
                             <div class="dropdown-toggle" role="button" data-toggle="dropdown" aria-expanded="true">
                                 <div class="header-btns-icon">
                                 <img src="{{request.session.user_image}}" alt="" style="height: 45px; margin-top:-2px">
-                                </div>
-                                <strong class="text-uppercase">{{user.first_name }} <i class="fa fa-caret-down"></i></strong>
+                                </div> 
+                                <strong class="text-uppercase">{{user.username }} <i class="fa fa-caret-down"></i></strong>
                             </div>
                             {% else %}
 
@@ -163,9 +163,9 @@
                             {% endif %}
 
                             <ul class="custom-menu">
-                                <li><a href="#"><i class="fa fa-user-o"></i> My Account</a></li>
-                                <li><a href="#"><i class="fa fa-heart-o"></i> My Wishlist</a></li>
-                                <li><a href="#"><i class="fa fa-check"></i> Checkout</a></li>
+                                <li><a href="/user"><i class="fa fa-user-o"></i> My Profile</a></li>
+                                <li><a href="/user/wishlist"><i class="fa fa-heart-o"></i> My Wishlist</a></li>
+                                <li><a href="/user/checkout"><i class="fa fa-check"></i> Checkout</a></li>
                                 <li><a href="/user/logout"><i class="fa fa-user-plus"></i> Logout </a></li>
                             </ul>
                         </li>

@@ -1,22 +1,63 @@
-from django.shortcuts import render
-from django.http import HttpResponse , HttpResponseRedirect
+from django.shortcuts import render , redirect 
+from django.http import HttpResponse , HttpResponseRedirect 
 from djproduct.models import *
 from djuser.models import * 
 from django.contrib.auth import authenticate, login , logout
 from django.contrib import messages
+from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required 
 
 # Create your views here.
-
+@login_required(login_url='/login') # checks for login
+def index(request):
+    category = Category.objects.all()
+    current_user = request.user # access user session information 
+    profile = UserProfileInfo.objects.get(user_id=current_user.id)
+    context_var = {'category':category, 'profile':profile}
+    return render(request,'user_account_info.html',context_var)
+# for sign up: 
 def signup_form(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        email = request.POST['email']
+        password = request.POST['password']
+        cpassword = request.POST['cpassword']
+
+        if password == cpassword:
+            # Only proceed further if password is validated 
+            # Now i have to check whether that username and email exists in my database already or not ; if it exits django will throw an error 
+            if User.objects.filter(username=username).exists():
+                messages.warning(request,"This username is already taken")
+                return HttpResponseRedirect('/user/signup')
+                
+            elif User.objects.filter(email=email).exists():
+                messages.warning(request,"This email is already registered")
+                return HttpResponseRedirect('/user/signup')
+
+            else:
+                user = User.objects.create_user(
+                    username = username,
+                    email = email,
+                    password = password 
+                )
+                user.save() # sign up completed 
+                messages.success(request,"Your account has been created")
+                # Now since the account is created we must redirect the user to homepage 
+                return HttpResponseRedirect('/user/login')
+        else:
+            messages.warning(request,"Passwords do not match")
+                
+            return HttpResponseRedirect('/user/signup')  
+
     category = Category.objects.all()
     context_var = {'category':category}
     return render(request,'signup.html',context_var)
 
 
-# for login/sign in 
+# for login/sign in:
 def login_form(request):
     if request.method == 'POST':
-        username = request.POST['username'] # receives through form that user types 
+        username = request.POST['username'] # receives through form that user enters 
         password = request.POST['password']
         user = authenticate(request,username=username,password=password) # checks in the database for authentication; first username comes from user through form and second is of database 
         # Now if authentication is successful; then login is executed by django and redirected to home(/)
@@ -37,7 +78,6 @@ def login_form(request):
 
 
 # for log out/ sign out:
-
 def logout_function(request):
     logout(request)
     return HttpResponseRedirect('/')
