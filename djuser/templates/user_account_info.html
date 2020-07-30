@@ -12,7 +12,7 @@
     <div class="container">
         <ul class="breadcrumb">
             <li><a href="/">Home</a></li>
-            <li class="active">User Profile</li>
+            <li class="active">My Profile</li>
         </ul>
     </div>
 </div>
@@ -44,16 +44,18 @@
                             <a href="/user/update_profile" class="primary-btn">Update Profile</a>
                             <a href="/user/change_password" class="primary-btn">Change Password</a>
                         </th>
-                        <td><img src="{{ profile.image.url }}" style="border-radius: 45px; height: 200px "></td>
+                        <td><img src="{{ profile.image.url }}" style="border-radius: 45px; height: 180px "></td>
                     </tr>
                     <tr>
                         <th class="text-left">Full Name</th>
-                        <td class="text-left">{{ profile.user.first_name}} {{ profile.user.last_name}} </td>
+                        <td class="text-left">{{ user.first_name}} {{ user.last_name}} </td>
+                 
                     </tr>
                     <tr>
                         <th class="text-left">Email</th>
-                        <td class="text-left">{{ profile.user.email}}</td>
+                        <td class="text-left">{{ user.email}}</td>
                     </tr>
+                           <!-- we can also access first_name, last_name and email by using profile.user.first_name since djuser_profile table has one to one relation to auth_user table; but for other fields we must use profile at front compulsorily   -->
                     <tr>
                         <th class="text-left">Phone</th>
                         <td class="text-left">{{ profile.phone_no}}</td>

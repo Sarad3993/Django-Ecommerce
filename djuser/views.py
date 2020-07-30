@@ -7,6 +7,7 @@ from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required 
 
+
 # Create your views here.
 @login_required(login_url='/login') # checks for login
 def index(request):
@@ -15,9 +16,12 @@ def index(request):
     profile = UserProfileInfo.objects.get(user_id=current_user.id)
     context_var = {'category':category, 'profile':profile}
     return render(request,'user_account_info.html',context_var)
+
 # for sign up: 
 def signup_form(request):
     if request.method == 'POST':
+        first_name = request.POST['first_name']
+        last_name = request.POST['last_name']
         username = request.POST['username']
         email = request.POST['email']
         password = request.POST['password']
@@ -36,12 +40,14 @@ def signup_form(request):
 
             else:
                 user = User.objects.create_user(
+                    first_name= first_name,
+                    last_name = last_name, 
                     username = username,
                     email = email,
                     password = password 
                 )
                 user.save() # sign up completed 
-                messages.success(request,"Your account has been created")
+                messages.success(request,"Your account has been created!! Now u can login")
                 # Now since the account is created we must redirect the user to homepage 
                 return HttpResponseRedirect('/user/login')
         else:

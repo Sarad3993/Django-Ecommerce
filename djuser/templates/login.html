@@ -2,7 +2,7 @@
 
 {% load static %}
 
-{% block title%} User Login {{info.title}} {% endblock %}
+{% block title%} User Login {{user.first_name}} {% endblock %}
 
 {% block content %}
 <!-- BREADCRUMB -->
@@ -26,17 +26,26 @@
             <div class="col-md-5">
 
                 <div class="section-title">
+            <!-- # for showing messages  -->
+                {% if messages %}
+                {% for message in messages %}
+                <div class="alert alert-{{message.tags}}" role="alert">
+                    {{ message }}
+                </div>
+                {% endfor %}
+                {% endif %}
                     <h3 class="title"> User Login </h3>
                 </div>
-                <form action="" method="POST">
-                    {% csrf_token %}
+
+                <form method="POST">
+                    {% csrf_token %} 
 
                     <div class="form-group">
-                        <input class="input" type="text" name="username" placeholder="Username" required>
+                        <input class="input" type="text" name="username" placeholder="Username" autocomplete="True"required>
                     </div>
 
                     <div class="form-group">
-                        <input class="input" type="password" name="password" placeholder="Password" required>
+                        <input class="input" type="password" name="password" placeholder="Password" autocomplete="True" required>
                     </div>
 
                     <button style="cursor: pointer;
@@ -50,18 +59,7 @@
                     padding: 7px 9px;
                     margin-top: 20px;"> Login </button>
                 </form>
-                <br>
-                <!-- # for showing error message  -->
-                {% if messages %}
-                {% for message in messages %}
-                <div class="alert alert-{{message.tags}}" role="alert">
-                    {{ message }}
-                </div>
-                {% endfor %}
-                {% endif %}
-
             </div>
-
         </div>
         <!-- /row -->
     </div>

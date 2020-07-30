@@ -15,7 +15,7 @@ class UserProfileInfo(models.Model):
     def __str__(self):
         return self.user.username
 
-    # just showing up username in admin panel is not enough ; for that we create a separate function to display other user details as well 
+    # just showing up username in user profile section of admin panel is not enough ; for that we create a separate function to display other user details as well 
     def user_name(self):
         return self.user.first_name + ' ' + self.user.last_name + '['+self.user.username+']'
 
