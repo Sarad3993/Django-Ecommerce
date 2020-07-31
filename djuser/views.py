@@ -125,7 +125,7 @@ def user_profile_update(request):
 @login_required(login_url='/user/login')
 def user_password_change(request):
     if request.method == 'POST':
-        form = PasswordChangeForm(request.POST,request.user) # we have to import PasswordChangeForm form django auth 
+        form = PasswordChangeForm(request.user,request.POST) # we have to import PasswordChangeForm form django auth 
         if form.is_valid(): 
             user = form.save()
             update_session_auth_hash(request, user) # session info is changed after password is changed 
@@ -133,7 +133,7 @@ def user_password_change(request):
             return redirect('/user')
         else:
             messages.error(request, 'Please correct the error below: <br>'+ str(form.errors)) 
-            return redirect('/user/password')
+            return redirect('/user/change_password')
     else:
         category = Category.objects.all()
         form = PasswordChangeForm(request.user)
