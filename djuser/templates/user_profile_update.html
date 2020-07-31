@@ -25,17 +25,19 @@
         <div class="row">
 
             <div class="col-md-4">
+                 <!-- to include a html at certain division  -->
                 {% include "user_panel.html" %}
             </div>
 
             <div class="col-md-6">
 
                 <div class="section-title">
-                    <h3 class="title"> User Profile Update</h3>
+                    <h3 class="title">Update Profile</h3>
                 </div>
                 
                 <form method="POST" enctype="multipart/form-data"> <!-- enctype is for file upload  -->
                     {% csrf_token %}
+                    <!-- fieldset tag is used to group two different related fields into a form  -->
                     <fieldset class="form-group">
                         {{ user_form.as_p  }}
                         {{ profile_form.as_p  }}

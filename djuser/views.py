@@ -2,11 +2,12 @@ from django.shortcuts import render , redirect
 from django.http import HttpResponse , HttpResponseRedirect 
 from djproduct.models import *
 from djuser.models import * 
-from django.contrib.auth import authenticate, login , logout
+from django.contrib.auth import authenticate, login , logout , update_session_auth_hash
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-from djuser.forms import * 
+from djuser.forms import *
+from django.contrib.auth.forms import PasswordChangeForm
 
 
 # for user account / user profile info section 
@@ -116,9 +117,25 @@ def user_profile_update(request):
         category = Category.objects.all()
         user_form = UserUpdateForm(instance=request.user)
         profile_form = UserProfileUpdateForm(instance=request.user.userprofileinfo) 
-        context_var = {
-            'category': category,
-            'user_form': user_form,
-            'profile_form': profile_form
-        }
+        context_var = {'category': category,'user_form': user_form,'profile_form': profile_form }
         return render(request, 'user_profile_update.html', context_var)
+
+
+# for user's password change: 
+@login_required(login_url='/user/login')
+def user_password_change(request):
+    if request.method == 'POST':
+        form = PasswordChangeForm(request.POST,request.user) # we have to import PasswordChangeForm form django auth 
+        if form.is_valid(): 
+            user = form.save()
+            update_session_auth_hash(request, user) # session info is changed after password is changed 
+            messages.success(request, 'Your password is successfully updated!')
+            return redirect('/user')
+        else:
+            messages.error(request, 'Please correct the error below: <br>'+ str(form.errors)) 
+            return redirect('/user/password')
+    else:
+        category = Category.objects.all()
+        form = PasswordChangeForm(request.user)
+        context_var = {'category':category,'form': form}
+        return render(request, 'user_password_change.html',context_var) 
