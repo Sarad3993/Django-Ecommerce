@@ -115,4 +115,36 @@ class User_ReviewsForm(ModelForm):
         fields = ['subject','comment','rating']
 
 
-    
+
+# for shop cart create a new model:
+class Cart(models.Model):
+    user = models.ForeignKey(User,on_delete=models.SET_NULL,null=True)
+    product = models.ForeignKey(Product, on_delete=models.SET_NULL,null=True)
+    quantity = models.IntegerField()
+
+    def __str__(self):
+        return self.product.title
+
+    # for showing price in admin panel
+    @property
+    def price(self):
+        return self.product.price
+
+    # for showing discounted price:
+    @property
+    def discounted_price(self):
+        return self.product.discounted_price
+
+    # for total price (with/without discount)
+    @property
+    def total_price(self):
+        if self.product.discounted_price:
+            return self.quantity * self.product.discounted_price
+        else:
+            return self.quantity * self.product.price
+
+# for adding quantity inside Quantity field in product details page 
+class CartForm(ModelForm):
+    class Meta:
+        model = Cart
+        fields = ['quantity']

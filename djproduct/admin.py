@@ -61,6 +61,11 @@ class User_ReviewsAdmin(admin.ModelAdmin):
     readonly_fields = ('product','subject','comment','rating','user','user_ip_address',)
 
 
+class CartAdmin(admin.ModelAdmin):
+    list_display = ['product','user','quantity','price','discounted_price','total_price']
+    list_filter = ['user']
+
+
 admin.site.register(Category, CategoryAdmin2)
 
 admin.site.register(Product, ProductAdmin)
@@ -68,3 +73,5 @@ admin.site.register(Product, ProductAdmin)
 admin.site.register(User_Reviews,User_ReviewsAdmin)
 
 admin.site.register(Images)
+
+admin.site.register(Cart,CartAdmin)
