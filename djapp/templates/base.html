@@ -33,7 +33,7 @@
     <!-- Custom stlylesheet -->
     <link type="text/css" rel="stylesheet" href="{% static 'css/style.css' %}" />
 
-    <!-- # for autocomplete search add these links separately -->
+    <!-- # for autocomplete search functionality add these links separately -->
     <!-- jQuery !-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"> </script>
     <!-- jQuery UI !-->
@@ -50,6 +50,13 @@
             <div class="container">
                 <div class="pull-left">
                     <span>Welcome to Shopmania</span>
+                    {% if messages %}
+                    {% for message in messages %}
+                    <div class="alert alert-{{message.tags}}" role="alert">
+                        {{message}}
+                    </div>
+                    {% endfor %}
+                    {% endif %}
                 </div>
                 <div class="pull-right">
                     <ul class="header-top-links">
@@ -99,8 +106,8 @@
                         {
                             $( "#query" ).autocomplete( {
                                 source: "/search_auto_complete",
-                                select: function (event, ui)
-                                { 
+                                select: function ( event, ui )
+                                {
                                     AutoCompleteSelectHandler( event, ui )
                                 },
                                 minLength: 2,
@@ -153,13 +160,16 @@
                             {% if user.id is not None %}
                             <div class="dropdown-toggle" role="button" data-toggle="dropdown" aria-expanded="true">
                                 <div class="header-btns-icon">
-                                <img src="{{request.session.user_image}}" alt="" style="height: 45px; margin-top:-2px; width:38px">
-                                </div> 
-                                <strong class="text-uppercase">{{user.username }} <i class="fa fa-caret-down"></i></strong>
+                                    <img src="{{request.session.user_image}}" alt=""
+                                        style="height: 45px; margin-top:-2px; width:38px">
+                                </div>
+                                <strong class="text-uppercase">{{user.username }} <i
+                                        class="fa fa-caret-down"></i></strong>
                             </div>
                             {% else %}
 
-                            <a href="/user/login" class="text-uppercase">Login</a> / <a href="/user/signup" class="text-uppercase">Sign Up</a>
+                            <a href="/user/login" class="text-uppercase">Login</a> / <a href="/user/signup"
+                                class="text-uppercase">Sign Up</a>
                             {% endif %}
 
                             <ul class="custom-menu">

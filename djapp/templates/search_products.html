@@ -2,7 +2,7 @@
 
 {% load static %}
 
-{% block title%} {{query}} search results  {% endblock %}
+{% block title%} {{query}} search results {% endblock %}
 
 {% block content %}
 <!-- BREADCRUMB -->
@@ -10,7 +10,7 @@
     <div class="container">
         <ul class="breadcrumb">
             <li><a href="/">Home</a></li>
-            <li class="active">Search results for 
+            <li class="active">Search results for
                 {{query}}</li>
         </ul>
     </div>
@@ -70,8 +70,10 @@
                                             <td class="qty text-center"><input class="input" type="number" value="1">
                                             </td>
 
-                                            <td class="text-right"><a href="" class="primary-btn add-to-cart"><i
-                                                        class="fa fa-shopping-cart"></i> Add to Cart</a></td>
+                                            <td class="text-right">
+                                                <a href="/product/add_to_cart/{{pro.id}}"
+                                                    class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i>
+                                                    Add to Cart</a></td>
                                         </tr>
                                         {% endfor %}
 

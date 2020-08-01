@@ -60,6 +60,7 @@ class Product(models.Model):
     image=models.ImageField(upload_to='images/', blank=True) 
     brand = models.CharField(max_length=200,blank=True)
     price = models.FloatField()
+    items_in_stock = models.IntegerField(default=0)  
     discounted_price = models.FloatField(blank=True)
     details= RichTextUploadingField()
     slug = models.SlugField(unique=True,null=False)
