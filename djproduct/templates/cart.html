@@ -50,14 +50,21 @@
                                     <a href="/product/{{cart.product.id}}/{{cart.product.slug}}">{{cart.product.title}}</a>
                                  
                                 </td>
+                                {% if cart.discounted_price > 0 %}
                                 <td class="price text-center"><strong>Rs.{{cart.discounted_price}}</strong><br><del
                                         class="font-weak"><small>Rs.{{cart.price}}</small></del></td>
+                                {% else %}
+
+                                <td class="price text-center"><strong>Rs.{{cart.price}}</strong></td>
+
+                                {% endif %}
+
                                 <td class="qty text-center"> <strong> {{cart.quantity}}</strong> </td>
 
                                 <td class="total text-center"><strong
-                                        class="primary-color">{{cart.total_price}}</strong></td>
+                                        class="primary-color">Rs.{{cart.total_price}}</strong></td>
                                 <td class="text-right"><a href="/product/delete_from_cart/{{ cart.id }}"
-                                        onclick="return confirm('Are you sure you want to remove from cart?')"
+                                        onclick="return confirm('Are you sure you want to remove this item from cart?')"
                                         class="main-btn icon-btn"><i class="fa fa-close"></i></a></td>
                             </tr>
                             {% endfor %}
@@ -65,7 +72,7 @@
                         <tfoot>
                             <tr>
                                 <th class="empty" colspan="3"></th>
-                                <th>SUB TOTAL</th>
+                                <th>TOTAL</th>
                                 <th colspan="2" class="sub-total">Rs.{{total}}</th>
                             </tr>
                             <tr>
@@ -75,8 +82,8 @@
                             </tr>
                             <tr>
                                 <th class="empty" colspan="3"></th>
-                                <th>TOTAL</th>
-                                <th colspan="2" class="total">$97.50</th>
+                                <th>GRAND TOTAL</th>
+                                <th colspan="2" class="total">Rs.{{total}}</th>
                             </tr>
                         </tfoot>
                         </table>

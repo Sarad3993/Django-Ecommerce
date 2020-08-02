@@ -137,7 +137,7 @@ class Cart(models.Model):
         return self.product.discounted_price
 
     # for total price (with/without discount)
-    @property
+    @property 
     def total_price(self):
         if self.product.discounted_price:
             return self.quantity * self.product.discounted_price

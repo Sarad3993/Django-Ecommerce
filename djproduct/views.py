@@ -62,9 +62,12 @@ def cart(request):
     context_var = {'category':category,'carts':carts,'total':total}
     return render(request,'cart.html',context_var) 
 
-
-
-
+# to delete items from cart 
+@login_required(login_url='/user/login') # Check login
+def delete_from_cart(request,id):
+    Cart.objects.filter(id=id).delete()
+    messages.success(request, "Item has been deleted from Cart!")
+    return redirect("/product/cart")
 
     
             
