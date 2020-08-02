@@ -44,7 +44,7 @@
 
                             {% for cart in carts %}
                             <tr>
-                                <td class="thumb"><img src="{{cart.product.image.url}}" alt="No image"></td>
+                                <td class="thumb">   <a href="/product/{{cart.product.id}}/{{cart.product.slug}}"> <img src="{{cart.product.image.url}}" alt="No image" height="50" width="60">  </a>  </td>
 
                                 <td class="details">
                                     <a href="/product/{{cart.product.id}}/{{cart.product.slug}}">{{cart.product.title}}</a>
@@ -75,11 +75,13 @@
                                 <th>TOTAL</th>
                                 <th colspan="2" class="sub-total">Rs.{{total}}</th>
                             </tr>
+                            
                             <tr>
                                 <th class="empty" colspan="3"></th>
                                 <th>SHIPPING</th>
                                 <td colspan="2">Free Shipping</td>
                             </tr>
+
                             <tr>
                                 <th class="empty" colspan="3"></th>
                                 <th>GRAND TOTAL</th>
