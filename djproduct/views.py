@@ -4,10 +4,7 @@ from djproduct.models import *
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
-def cart(request):
-    return HttpResponse("This is Cart Page")   
-
-
+ 
 @login_required(login_url='/user/login') # check login
 def add_to_cart(request,id):
     url = request.META.get('HTTP_REFERER') # get last accessed url from system 
@@ -55,7 +52,15 @@ def add_to_cart(request,id):
         return redirect(url)
 
     
-
+def cart(request):
+    category = Category.objects.all()
+    current_user = request.user # access user session information 
+    carts = Cart.objects.filter(user_id=current_user.id) # show only current user's items in cart 
+    total = 0
+    for cart in carts:
+        total += cart.product.price * cart.quantity
+    context_var = {'category':category,'carts':carts,'total':total}
+    return render(request,'cart.html',context_var) 
 
 
 
