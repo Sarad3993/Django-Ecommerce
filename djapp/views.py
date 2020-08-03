@@ -7,6 +7,7 @@ from djapp.forms import *
 import json
 
 
+
 def homepage(request):
     info = Information.objects.get(pk=1)
     # pk means primary key
@@ -148,3 +149,5 @@ def addcomment(request,id):
       
 
     return HttpResponseRedirect(url) # if POST method is not found directly redirects to same product page 
+
+
