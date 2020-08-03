@@ -1,12 +1,14 @@
 from django.shortcuts import render , redirect 
-from django.http import HttpResponse , HttpResponseRedirect , JsonResponse
+from django.http import HttpResponse , HttpResponseRedirect, JsonResponse
 from djproduct.models import *
+from djuser.models import * 
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
-import requests 
+import requests  
 import pprint
 import json 
+from django.utils.crypto import get_random_string 
 
 
 # to add products into cart 
@@ -77,9 +79,8 @@ def delete_from_cart(request,id):
     messages.success(request, "Item has been deleted from Cart!")
     return redirect("/product/cart")
 
-# for payment 
-
-@csrf_exempt
+# for payment through payment gateway[khalti.com]
+@csrf_exempt 
 def verify_payment(request):
     data = request.POST
     product_id = data['product_identity']
@@ -109,5 +110,64 @@ def verify_payment(request):
     return JsonResponse(f"Payment Done !! With IDX. {response_data['idx']}",safe=False)
             
 
+# for order:
+def order_product(request):
+    category = Category.objects.all() # category section is present in all pages so we include here too
+    current_user = request.user # Access current user's session information 
+    carts = Cart.objects.filter(user_id=current_user.id)
+    total = 0 
+    for tot in carts:
+        if tot.discounted_price:
+            total += tot.product.discounted_price * tot.quantity 
+        else:
+            total += tot.product.price * tot.quantity 
 
-    
+    if request.method == 'POST': # for data entry through form 
+        form = OrderForm(request.POST)
+        if form.is_valid():
+
+            data = Order()
+            data.first_name = form.cleaned_data['first_name']
+            data.last_name = form.cleaned_data['last_name']
+            data.address = form.cleaned_data['address']
+            data.phone = form.cleaned_data['phone']
+            data.city = form.cleaned_data['city']
+            data.country = form.cleaned_data['country']
+            # data.user_id = current_user.id
+            data.total = total 
+            data.ip_address = request.META.get('REMOTE_ADDR') 
+            order_code= get_random_string(10).upper() # generate 10 digits random code in uppercase 
+            data.code =  order_code 
+            data.save() 
+
+            # Move cart items to Order Product itn=ems 
+            carts = Cart.objects.filter(user_id=current_user.id)
+            for cart in carts: 
+                detail = OrderProduct()
+                detail.order_id= data.id  
+                detail.product_id= cart.product_id
+                detail.user_id = current_user.id
+                detail.quantity = cart.quantity
+                detail.price = cart.product.price 
+                detail.items_in_stock = cart.product.items_in_stock
+                detail.save()
+
+                # Reduce quantity of each products from items_in_stock field if products are already sold 
+                product = Product.objects.get(id=cart.product_id)
+                product.items_in_stock -= cart.quantity
+                product.save()
+              
+ 
+            Cart.objects.filter(user_id=current_user.id).delete() # Clear & Delete Cart after placing order 
+            request.session['cart_items']= 0 
+            messages.success(request, "Your Order has been completed. Thank you!! ")
+            return render(request, 'order_completed.html',{'order_code':order_code,'category': category}) 
+        else:
+            messages.warning(request, form.errors)
+            return redirect("/product/order_product")
+
+    form= OrderForm()
+    profile = UserProfileInfo.objects.get(user_id=current_user.id)
+    context_var = {'carts': carts, 'category': category,  'total': total, 'form': form, 'profile': profile }
+    return render(request, 'order_products.html', context_var)
+

@@ -149,3 +149,63 @@ class CartForm(ModelForm):
     class Meta:
         model = Cart
         fields = ['quantity']
+
+
+# create Order class for ordering products 
+class Order(models.Model):
+    STATUS = (('New', 'New'),('Accepted', 'Accepted'),('OnShipping', 'OnShipping'),('Completed', 'Completed'),('Canceled', 'Canceled'),
+    )
+    # for shipping information 
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+    code = models.CharField(max_length=10, editable=False ) # to generate random code 
+    first_name = models.CharField(max_length=100)
+    last_name = models.CharField(max_length=100)
+    phone = models.CharField(blank=True, max_length=30)
+    address = models.CharField(blank=True, max_length=150)
+    city = models.CharField(blank=True, max_length=50)
+    country = models.CharField(blank=True, max_length=50)
+    total = models.FloatField()
+    status=models.CharField(max_length=100,choices=STATUS,default='New')
+    ip_address = models.CharField(blank=True, max_length=30)
+    admin_note = models.CharField(blank=True, max_length=100)
+    create_at=models.DateTimeField(auto_now_add=True)
+    update_at=models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.user.first_name
+
+
+# now create OrderForm using above fields
+class OrderForm(ModelForm):
+    class Meta:
+        model = Order
+        fields = ['first_name','last_name','address','phone','city','country']
+
+
+class OrderProduct(models.Model):
+    STATUS = (('New', 'New'),('Accepted', 'Accepted'),('Canceled', 'Canceled'),
+    )
+    order = models.ForeignKey(Order, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    quantity = models.IntegerField()
+    price = models.FloatField()
+    items_in_stock = models.IntegerField(blank=True) 
+    status = models.CharField(max_length=100, choices=STATUS, default='New')
+    create_at = models.DateTimeField(auto_now_add=True)
+    update_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.product.title
+
+    @property
+    def discounted_price(self):
+        return self.product.discounted_price
+
+    @property 
+    def total_price(self):
+        if self.product.discounted_price:
+            return self.quantity * self.product.discounted_price
+        else:
+            return self.quantity * self.product.price
+

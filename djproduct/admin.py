@@ -53,7 +53,7 @@ class ProductAdmin(admin.ModelAdmin):
     list_filter = ['category'] # on what basis to filter the list 
     readonly_fields = ('image_tag',)
     inlines = [ProductImageInline]
-    prepopulated_fields = {'slug': ('title',)}
+    prepopulated_fields = {'slug': ('title',)} # for automatic adding of slug when we type slug name 
 
 class User_ReviewsAdmin(admin.ModelAdmin):
     list_display = ['subject','comment','status','create_at']
@@ -66,6 +66,25 @@ class CartAdmin(admin.ModelAdmin):
     list_filter = ['user']
 
 
+class OrderProductInline(admin.TabularInline):
+    model = OrderProduct
+    readonly_fields = ('user', 'product','price','discounted_price','quantity','total_price','items_in_stock')
+    can_delete = False
+    extra = 0 
+
+class OrderAdmin(admin.ModelAdmin):
+    list_display = ['first_name', 'last_name','phone','city','total','status']
+    list_filter = ['status']
+    readonly_fields = ('user','first_name', 'last_name','address','city','country','phone','ip_address','total') 
+    can_delete = False 
+    inlines = [OrderProductInline]
+
+
+class OrderProductAdmin(admin.ModelAdmin):
+    list_display = ['user', 'product','price','discounted_price','quantity','total_price','items_in_stock','status']
+    list_filter = ['user','status']
+
+
 admin.site.register(Category, CategoryAdmin2)
 
 admin.site.register(Product, ProductAdmin)
@@ -75,3 +94,7 @@ admin.site.register(User_Reviews,User_ReviewsAdmin)
 admin.site.register(Images)
 
 admin.site.register(Cart,CartAdmin)
+
+admin.site.register(Order,OrderAdmin)
+
+admin.site.register(OrderProduct,OrderProductAdmin)

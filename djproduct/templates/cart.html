@@ -50,6 +50,7 @@
                                     <a href="/product/{{cart.product.id}}/{{cart.product.slug}}">{{cart.product.title}}</a>
                                  
                                 </td>
+                                
                                 {% if cart.discounted_price > 0 %}
                                 <td class="price text-center"><strong>Rs.{{cart.discounted_price}}</strong><br><del
                                         class="font-weak"><small>Rs.{{cart.price}}</small></del></td>
@@ -90,8 +91,8 @@
                         </tfoot>
                         </table>
                         <div class="pull-right">
-                            <!-- <button class="primary-btn">Checkout</button> -->
-                            <button class="primary-btn" id="payment-button">Pay with Khalti</button>
+                         <a href = "/product/order_product"class="primary-btn">Checkout</a> 
+                        <!-- <button class="primary-btn" id="payment-button">Pay with Khalti</button> -->
                         </div>
                 </div>
             </div>
