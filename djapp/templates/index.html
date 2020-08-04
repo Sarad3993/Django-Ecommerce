@@ -72,14 +72,16 @@
 						{% else %}
 						<h3 class="product-price"> Rs.{{product.price}}</h3>
 						{% endif %}
-
+						<!-- # for average review and count  -->
 						<div class="product-rating">
-							<i class="fa fa-star"></i>
-							<i class="fa fa-star"></i>
-							<i class="fa fa-star"></i>
-							<i class="fa fa-star"></i>
-							<i class="fa fa-star-o empty"></i>
+							<i class="fa fa-star{% if product.average_review < 1%}-o empty{% endif%}"></i>
+							<i class="fa fa-star{% if product.average_review < 2%}-o empty{% endif%}"></i>
+							<i class="fa fa-star{% if product.average_review < 3%}-o empty{% endif%}"></i>
+							<i class="fa fa-star{% if product.average_review < 4%}-o empty{% endif%}"></i>
+							<i class="fa fa-star{% if product.average_review < 5%}-o empty{% endif%}"></i>
+							{{product.average_review}}/{{product.count_review}}               
 						</div>
+
 						<h2 class="product-name"><a
 								href="/product/{{product.id}}/{{product.slug}}">{{product.title}}</a></h2>
 						<div class="product-btns">

@@ -135,7 +135,7 @@ def addcomment(request,id):
     if request.method == 'POST':
         form = User_ReviewsForm(request.POST)
         if form.is_valid():
-            data = User_Reviews() 
+            data = User_Reviews() #create relation with model 
             data.subject = form.cleaned_data['subject']
             data.comment = form.cleaned_data['comment']
             data.rating = form.cleaned_data['rating']

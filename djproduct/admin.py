@@ -98,3 +98,4 @@ admin.site.register(Cart,CartAdmin)
 admin.site.register(Order,OrderAdmin)
 
 admin.site.register(OrderProduct,OrderProductAdmin)
+

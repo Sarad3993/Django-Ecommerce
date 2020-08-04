@@ -6,6 +6,7 @@ from mptt.fields import TreeForeignKey
 from django.urls import reverse 
 from django.contrib.auth.models import User 
 from django.forms import ModelForm ,TextInput, Textarea
+from django.db.models import Avg, Count
 
 
 # Model for category 
@@ -80,7 +81,25 @@ class Product(models.Model):
             return mark_safe(f'<img src="{self.image.url}" height="55"/>')
         else:
             return ""
-    image_tag.short_description = 'Image' # title for images in admin products section  
+    image_tag.short_description = 'Image' # title for images in admin products section
+
+
+# for average count of user reviews
+    def average_review(self):
+        reviews = User_Reviews.objects.filter(product=self, status='True').aggregate(average=Avg('rating'))
+        avg=0 
+        if reviews["average"] is not None:
+            avg=float(reviews["average"])
+        return avg
+
+# for total count of user reviews 
+    def count_review(self):
+        reviews = User_Reviews.objects.filter(product=self, status='True').aggregate(count=Count('id'))
+        cnt=0 
+        if reviews["count"] is not None:
+            cnt = int(reviews["count"])
+        return cnt
+
 
 # Model for products image gallery: 
 class Images(models.Model):

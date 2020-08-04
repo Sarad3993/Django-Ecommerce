@@ -65,7 +65,6 @@
 						{% if product.label %}
 						<div class="product-label">
 							<span> {{product.label}}</span>
-							<span class="sale">-20%</span>
 						</div>
 						{% endif %}
 					</div>
@@ -75,20 +74,24 @@
 							class="product-old-price">Rs.{{product.price}}</del></h3>
 					{% else %}
 					<h3 class="product-price">Rs.{{product.price}}
-						{% endif %}
+						{% endif %} 
 						<div>
+							<!-- calling function that we made inside Product Model -->
 							<div class="product-rating">
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star-o empty"></i>
+								<i class="fa fa-star{% if product.average_review < 1%}-o empty{% endif%}"></i>
+								<i class="fa fa-star{% if product.average_review < 2%}-o empty{% endif%}"></i>
+								<i class="fa fa-star{% if product.average_review < 3%}-o empty{% endif%}"></i>
+								<i class="fa fa-star{% if product.average_review < 4%}-o empty{% endif%}"></i>
+								<i class="fa fa-star{% if product.average_review < 5%}-o empty{% endif%}"></i>
+								{{ product.average_review |stringformat:".2f"}}
 							</div>
-							<a href="#">3 Review(s) / Add Review</a>
+
+							<a href="#tab1"> {{ product.count_review}} Review(s) / Add Review</a> 
 						</div>
+
 						<p><strong>Availability:</strong>{{product.stock}}</p>
 						<p><strong>Brand:</strong> {{product.brand}}</p>
-						<p> {{product.description}} </p>
+						<p> {{product.description}} </p> 
 						<div class="product-options">
 							<ul class="size-option">
 								<li><span class="text-uppercase">Size:</span></li>
@@ -108,15 +111,17 @@
 						<div class="product-btns">
 							<form action="/product/add_to_cart/{{product.id}}" method="POST">
 
-								{% csrf_token %}    
+								{% csrf_token %}
 
-							<div class="qty-input">
-								<span class="text-uppercase">QTY: </span>
-								<input class="input" name="quantity" type="number" value="1" min="1" max="{{product.items_in_stock}}"> 
-							</div>
-						
-							<button type="submit" class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> Add to
-								Cart</button>
+								<div class="qty-input">
+									<span class="text-uppercase">QTY: </span>
+									<input class="input" name="quantity" type="number" value="1" min="1"
+										max="{{product.items_in_stock}}">
+								</div>
+
+								<button type="submit" class="primary-btn add-to-cart"><i
+										class="fa fa-shopping-cart"></i> Add to
+									Cart</button>
 							</form>
 							<div class="pull-right">
 								<button class="main-btn icon-btn"><i class="fa fa-heart"></i></button>
@@ -132,7 +137,7 @@
 					<ul class="tab-nav">
 						<li class="active"><a data-toggle="tab" href="#tab1">Details</a></li>
 
-						<li><a data-toggle="tab" href="#tab2">Reviews (3)</a></li>
+						<li><a data-toggle="tab" href="#tab2">Reviews ({{product.count_review}})</a></li>
 					</ul>
 					<div class="tab-content">
 						<div id="tab1" class="tab-pane fade in active">
@@ -174,6 +179,7 @@
 											</div>
 										</div>
 										{% endfor %}
+
 										<ul class="reviews-pages">
 											<li class="active">1</li>
 											<li><a href="#">2</a></li>
