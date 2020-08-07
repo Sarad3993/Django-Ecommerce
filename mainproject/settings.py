@@ -128,10 +128,11 @@ STATIC_URL = '/static/'
 MEDIA_URL = '/uploads/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')
 
-SITE_ID = 1
+
 ####################################
     ##  CKEDITOR CONFIGURATION  ##
 ####################################
+SITE_ID = 1
 
 CKEDITOR_JQUERY_URL = 'https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js'
 # refers to the jquery file which CKEditor uses.
@@ -139,9 +140,22 @@ CKEDITOR_JQUERY_URL = 'https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery
 CKEDITOR_UPLOAD_PATH = 'images/' # refers the directory where images will be uploaded relative to your MEDIA_ROOT(media_root directory i.e main folder is uploads and for images there is a subfolder images inside it)
 CKEDITOR_IMAGE_BACKEND = "pillow" # refers to the image library which CKEditor uses to create thumbnails to display in CKEditor gallery
 
+# refers to the settings which CKEditor uses to customize its appearance and behavior
 CKEDITOR_CONFIGS = {
     'default': {
         'toolbar': None,
     },
 }
-# refer to the settings which CKEditor uses to customize its appearance and behavior
+
+
+# SMTP configuration: 
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587 
+EMAIL_HOST_USER = 'uknownothingjonsnow23@gmail.com'
+EMAIL_HOST_PASSWORD = 'Back#End@Deve#Loper@1330'
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False # since we are not using SSL so it is set as False 
+
+

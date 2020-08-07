@@ -56,7 +56,6 @@ def contact(request):
             # Sometimes it is important to know the ip address of an user to track his location ; for that we can do as
             data.user_ip_address = request.META.get('REMOTE_ADDR')
             data.save()  # saves to database
-            # import messages above
             messages.success(request, "Message has been sent Successfully!!!")
             return HttpResponseRedirect('/contact')  # redirect to contact page
 
@@ -74,8 +73,8 @@ def category_products(request, id, slug):
 
     return render(request, 'products.html', context_var)
 
-# for search functionality 
-def search(request):
+# for search functionality
+def search(request): 
     if request.method == 'GET':
         form = SearchForm(request.GET)
         if form.is_valid():
@@ -107,8 +106,8 @@ def search_auto_complete(request):
         query = request.GET.get('term', '')
         products = Product.objects.filter(title__icontains=query)
         results = []
-        for pro in products:
-            product_json = {}
+        for pro in products: 
+            product_json = {} 
             product_json = pro.title 
             results.append(product_json)
         data = json.dumps(results)

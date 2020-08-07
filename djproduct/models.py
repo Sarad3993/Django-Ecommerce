@@ -81,7 +81,7 @@ class Product(models.Model):
             return mark_safe(f'<img src="{self.image.url}" height="55"/>')
         else:
             return ""
-    image_tag.short_description = 'Image' # title for images in admin products section
+    image_tag.short_description = 'Image' # short_description is used by django for the name of the column 
 
 
 # for average count of user reviews
@@ -191,7 +191,7 @@ class Order(models.Model):
     update_at=models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return self.user.first_name
+        return self.first_name
 
 
 # now create OrderForm using above fields

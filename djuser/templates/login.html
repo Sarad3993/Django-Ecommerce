@@ -36,7 +36,7 @@
                 {% endif %}
                     <h3 class="title"> User Login </h3>
                 </div>
-
+                 
                 <form method="POST">
                     {% csrf_token %} 
 
@@ -47,7 +47,7 @@
                     <div class="form-group">
                         <input class="input" type="password" name="password" placeholder="Password" autocomplete="True" required>
                     </div>
-
+               
                     <button style="cursor: pointer;
                     border: 2px solid rgb(88, 181, 196);
                     border-radius: 6px;
@@ -58,6 +58,10 @@
                     font-size: 16px;
                     padding: 7px 9px;
                     margin-top: 20px;"> Login </button>
+                    <br>
+                    <a href="/password_reset/"> Forgot Password </a>
+                    <br>
+                    <a href="/user/signup/"> Not registered yet...Sign up now </a>
                 </form>
             </div>
         </div>
@@ -68,3 +72,4 @@
 <!-- /section -->
 
 {% endblock %}
+

@@ -16,7 +16,6 @@ class CategoryAdmin2(DraggableMPTTAdmin):
     list_display = ('tree_actions', 'indented_title','related_products_count', 'related_products_cumulative_count')
     list_display_links = ('indented_title',)
     prepopulated_fields = {'slug': ('title',)}
-    # inlines = [CategoryLangInline]
 
     def get_queryset(self, request):
         qs = super().get_queryset(request)
@@ -48,17 +47,19 @@ class ProductImageInline(admin.TabularInline):
 
 class ProductAdmin(admin.ModelAdmin):
     # list is displayed on the basis of above 3 categories
-    list_display = ['title', 'category', 'status', 'image_tag']
+    list_display = ['title', 'category', 'status', 'image_tag'] 
     # list is filtered on the basis of this filed category
     list_filter = ['category'] # on what basis to filter the list 
     readonly_fields = ('image_tag',)
     inlines = [ProductImageInline]
-    prepopulated_fields = {'slug': ('title',)} # for automatic adding of slug when we type slug name 
+    prepopulated_fields = {'slug': ('title',)} # for automatic slug creation when we type product name 
+    list_editable = ['status']
 
 class User_ReviewsAdmin(admin.ModelAdmin):
     list_display = ['subject','comment','status','create_at']
     list_filter = ['status']
     readonly_fields = ('product','subject','comment','rating','user','user_ip_address',)
+    list_editable = ['status']
 
 
 class CartAdmin(admin.ModelAdmin):
@@ -78,11 +79,13 @@ class OrderAdmin(admin.ModelAdmin):
     readonly_fields = ('user','first_name', 'last_name','address','city','country','phone','ip_address','total') 
     can_delete = False 
     inlines = [OrderProductInline]
+    list_editable = ['status']
 
 
 class OrderProductAdmin(admin.ModelAdmin):
     list_display = ['user', 'product','price','discounted_price','quantity','total_price','items_in_stock','status']
     list_filter = ['user','status']
+    list_editable = ['status']
 
 
 admin.site.register(Category, CategoryAdmin2)

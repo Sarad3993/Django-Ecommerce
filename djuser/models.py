@@ -28,3 +28,4 @@ class UserProfileInfo(models.Model):
     image_tag.short_description = 'Profile Image'
 
 
+

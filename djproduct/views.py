@@ -1,13 +1,9 @@
 from django.shortcuts import render , redirect 
-from django.http import HttpResponse , HttpResponseRedirect, JsonResponse
+from django.http import HttpResponse , HttpResponseRedirect
 from djproduct.models import *
 from djuser.models import * 
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.views.decorators.csrf import csrf_exempt
-import requests  
-import pprint
-import json 
 from django.utils.crypto import get_random_string 
 
 
@@ -68,7 +64,7 @@ def cart(request):
         if tot.discounted_price:
             total += tot.product.discounted_price * tot.quantity
         else:
-            total += tot.product.price * tot.quantity
+            total += tot.product.price * tot.quantity 
     context_var = {'category':category,'carts':carts,'total':total}
     return render(request,'cart.html',context_var) 
 
@@ -79,43 +75,13 @@ def delete_from_cart(request,id):
     messages.success(request, "Item has been deleted from Cart!")
     return redirect("/product/cart")
 
-# for payment through payment gateway[khalti.com]
-@csrf_exempt 
-def verify_payment(request):
-    data = request.POST
-    product_id = data['product_identity']
-    token = data['token']
-    amount = data['amount']
-
-    url = "https://khalti.com/api/v2/payment/verify/"
-    payload = {
-    "token": token,
-    "amount": amount
-    }
-    headers = {
-    "Authorization": "Key test_secret_key_749581ef3c8545ffaf4c05815eb0fc69"
-        }
-
-    response = requests.post(url, payload, headers = headers)
-
-    response_data = json.loads(response.text)
-    status_code = str(response.status_code)
-
-    if status_code == '400':
-        response = JsonResponse({'status':'false','message':response_data['detail']},status=500)
-        return response
-
-    pp = pprint.PrettyPrinter(indent=4)
-    pp.pprint(response_data)
-    return JsonResponse(f"Payment Done !! With IDX. {response_data['idx']}",safe=False)
-            
 
 # for order:
 def order_product(request):
     category = Category.objects.all() # category section is present in all pages so we include here too
     current_user = request.user # Access current user's session information 
     carts = Cart.objects.filter(user_id=current_user.id)
-    total = 0 
+    total = 0                            
     for tot in carts:
         if tot.discounted_price:
             total += tot.product.discounted_price * tot.quantity 
@@ -127,7 +93,7 @@ def order_product(request):
         if form.is_valid():
 
             data = Order()
-            data.first_name = form.cleaned_data['first_name']
+            data.first_name = form.cleaned_data['first_name'] 
             data.last_name = form.cleaned_data['last_name']
             data.address = form.cleaned_data['address']
             data.phone = form.cleaned_data['phone']
@@ -150,7 +116,7 @@ def order_product(request):
                 detail.quantity = cart.quantity
                 detail.price = cart.product.price 
                 detail.items_in_stock = cart.product.items_in_stock
-                detail.save()
+                detail.save()                
 
                 # Reduce quantity of each products from items_in_stock field if products are already sold 
                 product = Product.objects.get(id=cart.product_id)
@@ -170,4 +136,6 @@ def order_product(request):
     profile = UserProfileInfo.objects.get(user_id=current_user.id)
     context_var = {'carts': carts, 'category': category,  'total': total, 'form': form, 'profile': profile }
     return render(request, 'order_products.html', context_var)
+
+
 
