@@ -1,8 +1,8 @@
 from django.db import models
 from django.utils.safestring import mark_safe
 from ckeditor_uploader.fields import RichTextUploadingField
-from mptt.models import MPTTModel
-from mptt.fields import TreeForeignKey
+from mptt.models import MPTTModel 
+from mptt.fields import TreeForeignKey  
 from django.urls import reverse 
 from django.contrib.auth.models import User 
 from django.forms import ModelForm ,TextInput, Textarea
@@ -140,7 +140,7 @@ class User_ReviewsForm(ModelForm):
 class Cart(models.Model):
     user = models.ForeignKey(User,on_delete=models.SET_NULL,null=True)
     product = models.ForeignKey(Product, on_delete=models.SET_NULL,null=True)
-    quantity = models.IntegerField()
+    quantity = models.IntegerField()  
 
     def __str__(self):
         return self.product.title

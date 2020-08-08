@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title%} My Wishlist {% endblock %}
+
+{% block content %}
+<!-- BREADCRUMB -->
+<div id="breadcrumb">
+    <div class="container">
+        <ul class="breadcrumb">
+            <li><a href="/">Home</a></li>
+            <li class="active"> My Wishlist </li>
+        </ul>
+    </div>
+</div>
+<!-- /BREADCRUMB -->
+
+<!-- section -->
+<div class="section">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+
+            <!-- MAIN -->
+            <div id="main" class="col-md-9">
+                <!-- STORE -->
+                <div id="store">
+                    <!-- row -->
+                    <div class="row">
+
+                        <div class="col-md-12">
+                            <div class="order-summary clearfix">
+                                <div class="section-title">
+                                    <h3 class="title">Product List</h3>
+                                </div>
+                                <table class="shopping-cart-table table">
+                                    <thead>
+                                        <tr>
+                                            <th>Product</th>
+                                            <th></th>
+                                            <th class="text-center">Price</th>
+                                            <th class="text-center">Quantity</th>
+
+                                            <th class="text-right"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        {% for pro in products %}
+                                        <tr>
+                                            <td class="thumb"><a href="/product{{pro.id}}/{{pro.sl}}">
+                                                    <img src="{{ pro.image.url }}" alt="Error loading image"
+                                                        style="height: 100px">
+                                                </a></td>
+                                            <td class="details"> <a
+                                                    href="/product/{{pro.id}}/{{pro.slug}}">{{ pro.title }}</a> </td>
+                                            <td class="price text-center">
+                                                {% if pro.discounted_price > 0 %}
+                                                <strong>{{ pro.discounted_price}}</strong><br><del
+                                                    class="font-weak primary-color"><small>{{pro.price}}</small></del>
+                                                {% else %}
+                                                <strong>{{ pro.price}}</strong>
+                                                {% endif %}
+
+                                            </td>
+                                            <td class="qty text-center"><input class="input" type="number" value="1">
+                                            </td>
+
+                                            <td class="text-right">
+                                                <a href="/product/add_to_cart/{{pro.id}}"
+                                                    class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i>
+                                                    Add to Cart</a></td>
+                                        </tr>
+                                        {% endfor %}
+
+                                    </tbody>
+
+                                </table>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <!-- /row -->
+                </div>
+                <!-- /STORE -->
+                {% endblock %}

@@ -1,10 +1,10 @@
-from django.shortcuts import render
-from django.http import HttpResponse, HttpResponseRedirect, request
+from django.shortcuts import render 
+from django.http import HttpResponse, HttpResponseRedirect, request 
 from djapp.models import *
 from djproduct.models import *
 from django.contrib import messages
 from djapp.forms import *
-import json
+import json 
 
 
 
@@ -100,7 +100,6 @@ def search(request):
 
 
 # for autocompleting the search:
-
 def search_auto_complete(request):
     if request.is_ajax():
         query = request.GET.get('term', '')
@@ -108,13 +107,13 @@ def search_auto_complete(request):
         results = []
         for pro in products: 
             product_json = {} 
-            product_json = pro.title 
+            product_json = pro.title + " > " + pro.category.title 
             results.append(product_json)
         data = json.dumps(results)
     else:
         data = 'fail'
     mimetype = 'application/json'
-    return HttpResponse(data, mimetype)
+    return HttpResponse(data, mimetype)    
 
 
 # for single product detail 

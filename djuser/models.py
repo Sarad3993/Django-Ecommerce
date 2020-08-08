@@ -24,7 +24,7 @@ class UserProfileInfo(models.Model):
         if self.image.url is not None:
             return mark_safe(f'<img src="{self.image.url}" height="60"/>')
         else:
-            return ""
+            return "" 
     image_tag.short_description = 'Profile Image'
 
 

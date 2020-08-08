@@ -1,5 +1,5 @@
 from django.shortcuts import render , redirect 
-from django.http import HttpResponse , HttpResponseRedirect
+from django.http import HttpResponse , HttpResponseRedirect 
 from djproduct.models import *
 from djuser.models import * 
 from django.contrib import messages
