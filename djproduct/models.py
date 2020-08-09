@@ -161,7 +161,7 @@ class Cart(models.Model):
         if self.product.discounted_price:
             return self.quantity * self.product.discounted_price
         else:
-            return self.quantity * self.product.price
+            return self.quantity * self.product.price 
 
 # for adding quantity inside Quantity field in product details page 
 class CartForm(ModelForm):

@@ -9,8 +9,7 @@ import json
 
 
 def homepage(request):
-    info = Information.objects.get(pk=1)
-    # pk means primary key
+    info = Information.objects.get(pk=True)
 
     category = Category.objects.all()
 
@@ -21,8 +20,7 @@ def homepage(request):
     # last four products
     # if we do -id it means in descending order (i.e products added at last will be displayed)...anyway it makes sense latest products means products added at last
 
-    picked_product = Product.objects.all().order_by(
-        '?')[:4]  # randomly selected four products
+    picked_product = Product.objects.all().order_by('?')[:4]  # randomly selected four products
 
     # To show main category section in homepage only we do as:
     page = "homepage"
@@ -36,7 +34,7 @@ def homepage(request):
 
 
 def aboutus(request):
-    info = Information.objects.get(pk=1)
+    info = Information.objects.get(pk=True)
     category = Category.objects.all()
     context_var = {'info': info, 'category': category}
     return render(request, 'aboutus.html', context_var)
@@ -59,7 +57,7 @@ def contact(request):
             messages.success(request, "Message has been sent Successfully!!!")
             return HttpResponseRedirect('/contact')  # redirect to contact page
 
-    info = Information.objects.get(pk=1)
+    info = Information.objects.get(pk=True)
     category = Category.objects.all()
     form = ContactForm  # for rendering django modelform in template
     context_var = {'info': info, 'form': form, 'category': category}
@@ -107,7 +105,7 @@ def search_auto_complete(request):
         results = []
         for pro in products: 
             product_json = {} 
-            product_json = pro.title + " > " + pro.category.title 
+            product_json = pro.title 
             results.append(product_json)
         data = json.dumps(results)
     else:

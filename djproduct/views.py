@@ -54,6 +54,7 @@ def add_to_cart(request,id):
         messages.success(request,"Product added to Cart")
         return redirect(url)
 
+
 # for displaying all cart items 
 def cart(request):
     category = Category.objects.all()
@@ -64,9 +65,10 @@ def cart(request):
         if tot.discounted_price:
             total += tot.product.discounted_price * tot.quantity
         else:
-            total += tot.product.price * tot.quantity 
-    context_var = {'category':category,'carts':carts,'total':total}
+            total += tot.product.price * tot.quantity
+    context_var = {'category':category,'carts':carts, 'total':total}
     return render(request,'cart.html',context_var) 
+
 
 # to delete items from cart 0
 @login_required(login_url='/user/login') # Check login
