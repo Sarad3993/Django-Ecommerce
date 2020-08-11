@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% load static %}
-
+{% block title%} Products {% endblock %}
 {% block content %}
 
 <!-- BREADCRUMB -->
@@ -9,7 +9,9 @@
 	<div class="container">
 		<ul class="breadcrumb">
 			<li><a href="/">Home</a></li>
-			<li class="active">Products</li>
+			{% for cat in category %}
+			<li class="active">{{cat.title}}</li>
+			{% endfor %}
 		</ul>
 	</div>
 </div>
@@ -21,113 +23,62 @@
 	<div class="container">
 		<!-- row -->
 		<div class="row">
-
-			<!-- MAIN -->
-			<div id="main" class="col-md-12">
-			<!-- STORE -->
-			<div id="store">
-				<!-- row -->
-				<div class="row">
-
-				<div class="col-md-12">
-				<div class="order-summary clearfix">
-					<div class="section-title">
-						<h3 class="title">Product List</h3>
-					</div>
-					<table class="shopping-cart-table table">
-						<thead>
-							<tr>
-								<th>Product</th>
-								<th></th>
-								<th class="text-center">Price</th>
-								<th class="text-center">Quantity</th>
-
-								<th class="text-right"></th>
-							</tr>
-						</thead>
-						<tbody>
-
-						{% for pro in products %}
-							<tr>
-								<td class="thumb"><a href="/product/{{pro.id}}/{{pro.slug}}">
-									<img src="{{ pro.image.url }}" alt="Error loading image" style="height: 100px">
-								</a></td>
-								<td class="details"> <a href="/product/{{pro.id}}/{{pro.slug}}">{{ pro.title }}</a>	</td>
-								<td class="price text-center">
-									{% if pro.discounted_price > 0 %}
-									<strong>{{ pro.discounted_price}}</strong><br><del class="font-weak primary-color"><small>{{pro.price}}</small></del>
-									{% else %}
-									<strong>{{ pro.price}}</strong>
-									{% endif %}
-
-								</td>
-
-							<form action="/product/add_to_cart/{{pro.id}}" method="POST">
-
-							{% csrf_token %}
-
-							<td class="qty text-center"> <input class="input" name="quantity" type="number" min="1"
-									max="{{pro.items_in_stock}}"></td> 
-
-								<td class="text-right"> <button type="submit" class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> Add to
-								Cart</button></td>
-								</form>
-							
-							</tr>
-							{% endfor %}
-
-						</tbody>
-
-					</table>
-
-					</div>
-
+			<!-- section title -->
+			<div class="col-md-12">
+				<!-- Product Single -->
+				<br>
+				<div class="section-title">
+					{% for cat in category %}
+					<h3 class="title">{{cat.title}}</h3>
+					{% endfor %}
 				</div>
-
-			</div>
-				<!-- /row -->
-		</div>
-			<!-- /STORE -->
-
-
-				<!-- store bottom filter -->
-				<div class="store-filter clearfix">
-					<div class="pull-left">
-						<div class="row-filter">
-							<a href="#"><i class="fa fa-th-large"></i></a>
-							<a href="#" class="active"><i class="fa fa-bars"></i></a>
+				<br>
+				{% for product in products %}
+				<div class="col-md-3 col-sm-6 col-xs-6">
+					<div class="product product-single">
+						<div class="product-thumb">
+							{% if product.label %}
+							<div class="product-label">
+								<span> {{product.label}}</span>
+							</div>
+							{% endif %}
+							<a href="/product/{{product.id}}/{{product.slug}}" class="main-btn quick-view"><i
+									class="fa fa-search-plus"></i> Quick view</a>
+							<img src="{{product.image.url}}" alt="Error loading image" height="200" width="200">
 						</div>
-						<div class="sort-filter">
-							<span class="text-uppercase">Sort By:</span>
-							<select class="input">
-								<option value="0">Position</option>
-								<option value="0">Price</option>
-								<option value="0">Rating</option>
-							</select>
-							<a href="#" class="main-btn icon-btn"><i class="fa fa-arrow-down"></i></a>
+
+						<div class="product-body">
+							{% if product.discounted_price > 0 %}
+							<h3 class="product-price">Rs.{{product.discounted_price}}
+								<del class="product-old-price">Rs.{{product.price}}</del>
+							</h3>
+							{% else %}
+							<h3 class="product-price"> Rs.{{product.price}}</h3>
+							{% endif %}
+							<!-- # for average review and count  -->
+							<div class="product-rating">
+								<i class="fa fa-star{% if product.average_review < 1%}-o empty{% endif%}"></i>
+								<i class="fa fa-star{% if product.average_review < 2%}-o empty{% endif%}"></i>
+								<i class="fa fa-star{% if product.average_review < 3%}-o empty{% endif%}"></i>
+								<i class="fa fa-star{% if product.average_review < 4%}-o empty{% endif%}"></i>
+								<i class="fa fa-star{% if product.average_review < 5%}-o empty{% endif%}"></i>
+								{{product.average_review}}/{{product.count_review}}
+							</div>
+
+							<h2 class="product-name"><a
+									href="/product/{{product.id}}/{{product.slug}}">{{product.title}}</a></h2>
+							<div class="product-btns">
+								<button class="main-btn icon-btn"><i class="fa fa-heart"></i></button>
+								<a href="/product/add_to_cart/{{product.id}}" class="primary-btn add-to-cart"><i
+										class="fa fa-shopping-cart"></i> Add to
+									Cart</a>
+							</div>
 						</div>
-					</div>
-					<div class="pull-right">
-						<div class="page-filter">
-							<span class="text-uppercase">Show:</span>
-							<select class="input">
-								<option value="0">10</option>
-								<option value="1">20</option>
-								<option value="2">30</option>
-							</select>
-						</div>
-						<ul class="store-pages">
-							<li><span class="text-uppercase">Page:</span></li>
-							<li class="active">1</li>
-							<li><a href="#">2</a></li>
-							<li><a href="#">3</a></li>
-							<li><a href="#"><i class="fa fa-caret-right"></i></a></li>
-						</ul>
 					</div>
 				</div>
-				<!-- /store bottom filter -->
+				<!-- /Product Single -->
+				{% endfor %}
 			</div>
-			<!-- /MAIN -->
 		</div>
 		<!-- /row -->
 	</div>

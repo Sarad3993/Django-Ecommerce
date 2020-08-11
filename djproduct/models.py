@@ -35,9 +35,6 @@ class Category(MPTTModel):
         order_insertion_by = ['title']
 #That MPTTMeta class adds some tweaks to django-mptt - in this case, just order_insertion_by. This indicates the natural ordering of the data in the tree
 
-    def get_category_url(self):
-        return reverse('category_detail',kwargs={'slug':self.slug})
-
 # Add this script to separate category and subcategory in admin panel dropdown menu: 
     def __str__(self):                           
         full_path = [self.title]                  

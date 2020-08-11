@@ -10,8 +10,7 @@
     <div class="container">
         <ul class="breadcrumb">
             <li><a href="/">Home</a></li>
-            <li class="active">Search results for
-                {{query}}</li>
+            <li class="active">Search results</li>
         </ul>
     </div>
 </div>
@@ -26,119 +25,77 @@
 
             <!-- MAIN -->
             <div id="main" class="col-md-12">
-                <!-- STORE -->
-                <div id="store">
-                    <!-- row -->
-                    <div class="row">
 
-                        <div class="col-md-12">
-                            <div class="order-summary clearfix">
-                                <div class="section-title">
-                                    <h3 class="title">Product List</h3>
-                                </div>
-                                <table class="shopping-cart-table table">
-                                    <thead>
-                                        <tr>
-                                            <th>Product</th>
-                                            <th></th>
-                                            <th class="text-center">Price</th>
-                                            <th class="text-center">Quantity</th>
+                <!-- row -->
+                <div class="row">
 
-                                            <th class="text-right"></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-
-                                        {% for pro in products %}
-                                        <tr>
-                                            <td class="thumb"><a href="/product{{pro.id}}/{{pro.sl}}">
-                                                    <img src="{{ pro.image.url }}" alt="Error loading image"
-                                                        style="height: 100px">
-                                                </a></td>
-                                            <td class="details"> <a
-                                                    href="/product/{{pro.id}}/{{pro.slug}}">{{ pro.title }}</a> </td>
-                                            <td class="price text-center">
-                                                {% if pro.discounted_price > 0 %}
-                                                <strong>{{ pro.discounted_price}}</strong><br><del
-                                                    class="font-weak primary-color"><small>{{pro.price}}</small></del>
-                                                {% else %}
-                                                <strong>{{ pro.price}}</strong>
-                                                {% endif %}
-
-                                            </td>
-                                            <form action="/product/add_to_cart/{{pro.id}}" method="POST">
-
-                                                {% csrf_token %}
-                    
-                                                <td class="qty text-center"> <input class="input" name="quantity" type="number" min="1"
-                                                        max="{{pro.items_in_stock}}"></td> 
-                    
-                                                    <td class="text-right"> <button type="submit" class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> Add to
-                                                    Cart</button></td>
-                                                    </form>
-                                           
-                                            
-                                        </tr>
-                                        {% endfor %}
-
-                                    </tbody>
-
-                                </table>
-
+                    <div class="col-md-12">
+                        <div class="order-summary clearfix">
+                            <br>
+                            <div class="section-title">
+                                <h3>Search results for:&nbsp; <span style="color:crimson; font-style:italic; font-size:22px"> {{query}} </span> </h3>
                             </div>
+                            <br>
+                            <table class="shopping-cart-table table">
+                                <thead>
+                                    <tr>
+                                        <th>Product</th>
+                                        <th></th>
+                                        <th class="text-center">Price</th>
+                                        <th class="text-center">Quantity</th>
+
+                                        <th class="text-right"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    {% for pro in products %}
+                                    <tr>
+                                        <td class="thumb"><a href="/product/{{pro.id}}/{{pro.slug}}">
+                                                <img src="{{ pro.image.url }}" alt="Error loading image"
+                                                    style="height: 100px">
+                                            </a></td>
+                                        <td class="details"> <a
+                                                href="/product/{{pro.id}}/{{pro.slug}}">{{ pro.title }}</a> </td>
+                                        <td class="price text-center">
+                                            {% if pro.discounted_price > 0 %}
+                                            <strong>{{ pro.discounted_price}}</strong><br><del
+                                                class="font-weak primary-color"><small>{{pro.price}}</small></del>
+                                            {% else %}
+                                            <strong>{{ pro.price}}</strong>
+                                            {% endif %}
+
+                                        </td>
+                                        <form action="/product/add_to_cart/{{pro.id}}" method="POST">
+
+                                            {% csrf_token %}
+
+                                            <td class="qty text-center"> <input class="input" name="quantity"
+                                                    type="number" min="1" max="{{pro.items_in_stock}}"></td>
+
+                                            <td class="text-right"> <button type="submit"
+                                                    class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i>
+                                                    Add to
+                                                    Cart</button></td>
+                                        </form>
+                                    </tr>
+                                    {% endfor %}
+
+                                </tbody>
+
+                            </table>
 
                         </div>
 
                     </div>
-                    <!-- /row -->
+
                 </div>
-                <!-- /STORE -->
-
-
-                <!-- store bottom filter -->
-                <div class="store-filter clearfix">
-                    <div class="pull-left">
-                        <div class="row-filter">
-                            <a href="#"><i class="fa fa-th-large"></i></a>
-                            <a href="#" class="active"><i class="fa fa-bars"></i></a>
-                        </div>
-                        <div class="sort-filter">
-                            <span class="text-uppercase">Sort By:</span>
-                            <select class="input">
-                                <option value="0">Position</option>
-                                <option value="0">Price</option>
-                                <option value="0">Rating</option>
-                            </select>
-                            <a href="#" class="main-btn icon-btn"><i class="fa fa-arrow-down"></i></a>
-                        </div>
-                    </div>
-                    <div class="pull-right">
-                        <div class="page-filter">
-                            <span class="text-uppercase">Show:</span>
-                            <select class="input">
-                                <option value="0">10</option>
-                                <option value="1">20</option>
-                                <option value="2">30</option>
-                            </select>
-                        </div>
-                        <ul class="store-pages">
-                            <li><span class="text-uppercase">Page:</span></li>
-                            <li class="active">1</li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#"><i class="fa fa-caret-right"></i></a></li>
-                        </ul>
-                    </div>
-                </div>
-                <!-- /store bottom filter -->
+                <!-- /row -->
             </div>
-            <!-- /MAIN -->
+            <!-- /row -->
         </div>
-        <!-- /row -->
+        <!-- /container -->
     </div>
-    <!-- /container -->
-</div>
-<!-- /section -->
-
-{% endblock %}
-
+    <!-- /section -->
+    <br>
+    {% endblock %}

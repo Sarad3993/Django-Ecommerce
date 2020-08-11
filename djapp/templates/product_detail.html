@@ -74,7 +74,7 @@
 							class="product-old-price">Rs.{{product.price}}</del></h3>
 					{% else %}
 					<h3 class="product-price">Rs.{{product.price}}
-						{% endif %} 
+						{% endif %}
 						<br>
 						<div>
 							<!-- calling function that we made inside Product Model -->
@@ -85,19 +85,22 @@
 								<i class="fa fa-star{% if product.average_review < 4%}-o empty{% endif%}"></i>
 								<i class="fa fa-star{% if product.average_review < 5%}-o empty{% endif%}"></i>
 								<strong>{{ product.average_review |stringformat:".2f"}} </strong>
-							
+
 							</div>
 
-							<a href="#tab1"> <strong>{{ product.count_review}} </strong>  Review(s) | Add your review</a> 
+							<a href="#tab1"> <strong>{{ product.count_review}} </strong> Review(s) | Add your review</a>
 						</div>
 						<br>
-						<p><strong>Availability: </strong> <span style="color:crimson; font-weight:bold">&nbsp; {{product.stock}} </span> </p>
+						<p><strong>Availability: </strong> <span style="color:crimson; font-weight:bold">&nbsp;
+								{{product.stock}} </span> </p>
 						<br>
-						<p><strong>Brand:</strong>  <span style="color:crimson; font-weight:bold"> &nbsp;{{product.brand}} </span></p>
+						<p><strong>Brand:</strong> <span style="color:crimson; font-weight:bold">
+								&nbsp;{{product.brand}} </span></p>
 						<br>
-						<p> <strong>About this item:</strong> <br> {{product.description|safe}} </p> 
+						<p> <strong>About this item:</strong> <br> {{product.description|safe}} </p>
 						<br>
-						<p> <strong> Add to Wishlist:&nbsp; <button class="main-btn icon-btn"><i class="fa fa-heart"></i></button>  </strong> </p>
+						<p> <strong> Add to Wishlist:&nbsp; <button class="main-btn icon-btn"><i
+										class="fa fa-heart"></i></button> </strong> </p>
 						<br>
 						<hr>
 						<br>
