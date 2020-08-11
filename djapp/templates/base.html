@@ -35,9 +35,9 @@
 
 
     <!-- # For AutoComplete search functionality add these links separately -->
-    <!-- jQuery !--> 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"> </script> 
-    <!-- jQuery UI !--> 
+    <!-- jQuery !-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"> </script>
+    <!-- jQuery UI !-->
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
@@ -106,18 +106,19 @@
                     <!-- Add this script for autocomplete search  -->
                     <script>
 
-                        $(function (){
+                        $( function ()
+                        {
                             $("#query").autocomplete({
                                 source: "/search_auto_complete/",
                                 select: function (event, ui)
                                 {
-                                    AutoCompleteSelectHandler(event, ui)
+                                    AutoCompleteSelectHandler( event, ui )
                                 },
                                 minLength: 2,
                             });
                         });
 
-                        function AutoCompleteSelectHandler( event,ui)
+                        function AutoCompleteSelectHandler( event, ui )
                         {
                             var selectedObj = ui.item;
                         }
@@ -137,7 +138,7 @@
 
                                 {% recursetree category %}
                                 <!--  if there is category only  -->
-                                {% if node.is_leaf_node %} 
+                                {% if node.is_leaf_node %}
                                 <option value="{{node.id}}">{{node.title}}</option>
                                 {% endif %}
 
@@ -190,9 +191,9 @@
                             <a href="/product/cart">
                                 <div class="header-btns-icon">
                                     <i class="fa fa-shopping-cart"></i>
-                                 
+
                                     <span class="qty">{{quantity}}</span>
-                                 
+
                                 </div>
                                 <strong class="text-uppercase">My Cart:</strong>
                             </a>
@@ -534,7 +535,7 @@
         </footer>
         <!-- /FOOTER -->
 
-        <!-- jQuery Plugins --> 
+        <!-- jQuery Plugins -->
         <!-- <script src="{% static 'js/jquery.min.js'%}"></script> -->
         <script src="{% static 'js/bootstrap.min.js' %}"></script>
         <script src="{% static 'js/slick.min.js' %}"></script>
@@ -544,4 +545,4 @@
 
 </body>
 
-</html>/
+</html>

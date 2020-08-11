@@ -88,6 +88,7 @@ class OrderProductAdmin(admin.ModelAdmin):
     list_editable = ['status']
 
 
+
 admin.site.register(Category, CategoryAdmin2)
 
 admin.site.register(Product, ProductAdmin)
@@ -101,4 +102,5 @@ admin.site.register(Cart,CartAdmin)
 admin.site.register(Order,OrderAdmin)
 
 admin.site.register(OrderProduct,OrderProductAdmin)
+
 

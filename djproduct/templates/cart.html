@@ -27,7 +27,7 @@
 
                 <div class="order-summary clearfix">
                     <div class="section-title">
-                        <h3 class="title"> Cart Product List</h3>
+                        <h3 class="title"> My Cart </h3>
                     </div>
                     <table class="shopping-cart-table table">
                         <thead>
@@ -37,20 +37,23 @@
                                 <th class="text-center">Price</th>
                                 <th class="text-center">Quantity</th>
                                 <th class="text-center">Total</th>
-                                <th class="text-right"></th>
+                                <th class="text-right"> Remove </th>
                             </tr>
                         </thead>
                         <tbody>
 
                             {% for cart in carts %}
                             <tr>
-                                <td class="thumb">   <a href="/product/{{cart.product.id}}/{{cart.product.slug}}"> <img src="{{cart.product.image.url}}" alt="No image" height="50" width="60">  </a>  </td>
+                                <td class="thumb"> <a href="/product/{{cart.product.id}}/{{cart.product.slug}}"> <img
+                                            src="{{cart.product.image.url}}" alt="No image" height="50" width="60"> </a>
+                                </td>
 
                                 <td class="details">
-                                    <a href="/product/{{cart.product.id}}/{{cart.product.slug}}">{{cart.product.title}}</a>
-                                 
+                                    <a
+                                        href="/product/{{cart.product.id}}/{{cart.product.slug}}">{{cart.product.title}}</a>
+
                                 </td>
-                                
+
                                 {% if cart.discounted_price > 0 %}
                                 <td class="price text-center"><strong>Rs.{{cart.discounted_price}}</strong><br><del
                                         class="font-weak"><small>Rs.{{cart.price}}</small></del></td>
@@ -63,7 +66,7 @@
                                 <td class="qty text-center"> <strong> {{cart.quantity}}</strong> </td>
 
                                 <td class="total text-center"><strong
-                                        class="primary-color">Rs.{{cart.total_price}}</strong></td> 
+                                        class="primary-color">Rs.{{cart.total_price}}</strong></td>
                                 <td class="text-right"><a href="/product/delete_from_cart/{{ cart.id }}"
                                         onclick="return confirm('Are you sure you want to remove this item from cart?')"
                                         class="main-btn icon-btn"><i class="fa fa-close"></i></a></td>
@@ -74,25 +77,20 @@
                             <tr>
                                 <th class="empty" colspan="3"></th>
                                 <th>TOTAL</th>
-                                <th colspan="2" class="sub-total">Rs.{{total}}</th>
-                            </tr>
-                            
-                            <tr>
-                                <th class="empty" colspan="3"></th>
-                                <th>SHIPPING</th>
-                                <td colspan="2">Free Shipping</td>
-                            </tr>
-
-                            <tr>
-                                <th class="empty" colspan="3"></th>
-                                <th>GRAND TOTAL</th>
                                 <th colspan="2" class="total">Rs.{{total}}</th>
                             </tr>
+
                         </tfoot>
-                        </table>
-                        <div class="pull-right">
-                         <a href = "/product/order_product"class="primary-btn">Checkout</a> 
-                         
+                    </table>
+                    <br>
+                    <div class="pull-left">
+                        <a href="/" class="primary-btn">Continue Shopping</a>
+                    </div>
+
+                    <div class="pull-right">
+                        <a href="/product/order_product" class="primary-btn">Proceed To Checkout</a>
+                    </div>
+
                 </div>
             </div>
         </div>

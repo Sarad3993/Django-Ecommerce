@@ -10,26 +10,19 @@ import json
 
 def homepage(request):
     info = Information.objects.get(pk=True)
-
     category = Category.objects.all()
+    slider = Product.objects.all().order_by('-id')[:4]
+    # if we do -id it means in descending order (i.e products added at last will be displayed)..
+    # [:4] limits the number of slider to be shown regardless how much we have added in admin panel
+    top_sells = Product.objects.all().order_by('?')[:4]
+    special_offers = Product.objects.all().order_by('?')[:4]  # randomly selected four products
 
-    # [:3] limits the number of slider to be shown regardless how much we have added in admin panel
-    slider = Product.objects.all().order_by('-id')[:3]
-
-    latest_product = Product.objects.all().order_by('-id')[:4]
-    # last four products
-    # if we do -id it means in descending order (i.e products added at last will be displayed)...anyway it makes sense latest products means products added at last
-
-    picked_product = Product.objects.all().order_by('?')[:4]  # randomly selected four products
-
-    # To show main category section in homepage only we do as:
+    # To show categories panel in homepage only and hide in others page we do as:
     page = "homepage"
-
     context_var = {'info': info, 'page': page, 'category': category, 'slider': slider,
-                   'latest_product': latest_product, 'picked_product': picked_product}
+                   'top_sells': top_sells, 'special_offers': special_offers}
     # context_var is a dictionary in key:value pair form
     # we can now call every fields inside Information model class by using key 'info' wherever required in template
-
     return render(request, 'index.html', context_var)
 
 
@@ -68,7 +61,6 @@ def category_products(request, id, slug):
     category = Category.objects.all()
     products = Product.objects.filter(category_id=id)
     context_var = {'category': category, 'products': products}
-
     return render(request, 'products.html', context_var)
 
 # for search functionality
@@ -121,7 +113,6 @@ def product_detail(request, id, slug):
     images = Images.objects.filter(product_id=id)
     reviews = User_Reviews.objects.filter(product_id=id,status='True') # filter those user reviews of that specific product from database whose status is set to True in admin panel 
     context_var = {'category': category, 'product': product,'images':images,'reviews':reviews}
-
     return render(request,'product_detail.html', context_var) 
 
  
@@ -142,7 +133,6 @@ def addcomment(request,id):
             data.save()
             messages.success(request, "Thank You for your interest !!! Review has been sent")
             return HttpResponseRedirect(url) 
-      
 
     return HttpResponseRedirect(url) # if POST method is not found directly redirects to same product page 
 

@@ -9,7 +9,6 @@ urlpatterns = [
     path('delete_from_cart/<int:id>',delete_from_cart,name="delete_from_cart"),
     path('order_product/',order_product, name='order_product'),
 
-
 ]
 
 

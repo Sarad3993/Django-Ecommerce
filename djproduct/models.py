@@ -57,7 +57,7 @@ class Product(models.Model):
     category = models.ForeignKey(Category,on_delete=models.CASCADE)
     title = models.CharField(max_length=100)
     keywords = models.CharField(max_length=300)
-    description = models.TextField(max_length=300)
+    description = RichTextUploadingField() 
     image=models.ImageField(upload_to='images/', blank=True) 
     brand = models.CharField(max_length=200,blank=True)
     price = models.FloatField()
@@ -145,17 +145,14 @@ class Cart(models.Model):
     def __str__(self):
         return self.product.title
 
-    # for showing price in admin panel
     @property
     def price(self):
         return self.product.price
 
-    # for showing discounted price:
     @property
     def discounted_price(self):
         return self.product.discounted_price
 
-    # for total price (with/without discount)
     @property 
     def total_price(self):
         if self.product.discounted_price:
@@ -167,7 +164,7 @@ class Cart(models.Model):
 class CartForm(ModelForm):
     class Meta:
         model = Cart
-        fields = ['quantity']
+        fields = ['quantity'] 
 
 
 # create Order class for ordering products 
@@ -227,4 +224,6 @@ class OrderProduct(models.Model):
             return self.quantity * self.product.discounted_price
         else:
             return self.quantity * self.product.price
+
+
 

@@ -61,9 +61,18 @@
 									{% endif %}
 
 								</td>
-								<td class="qty text-center"><input class="input" type="number" value="1"></td>
 
-								<td class="text-right"><a href="" class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> Add to Cart</a></td>
+							<form action="/product/add_to_cart/{{pro.id}}" method="POST">
+
+							{% csrf_token %}
+
+							<td class="qty text-center"> <input class="input" name="quantity" type="number" min="1"
+									max="{{pro.items_in_stock}}"></td> 
+
+								<td class="text-right"> <button type="submit" class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> Add to
+								Cart</button></td>
+								</form>
+							
 							</tr>
 							{% endfor %}
 

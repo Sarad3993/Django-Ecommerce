@@ -27,7 +27,7 @@
             <div class="col-md-12">
                 <div class="order-summary clearfix">
                     <div class="section-title">
-                        <h3 class="title">ORDER REVIEW</h3>
+                        <h3 class="title">YOUR ORDER</h3>
                     </div>
                     <table class="shopping-cart-table table">
                         <thead>
@@ -56,8 +56,8 @@
                                 </td>
 
                                 {% if cart.discounted_price > 0 %}
-                                <td class="price text-center"><strong>Rs.{{cart.discounted_price}}</strong><br><del
-                                        class="font-weak"><small>Rs.{{cart.price}}</small></del></td>
+                                <td class="price text-center"><strong>Rs.{{cart.discounted_price}}</strong><br>
+                                    </td>
                                 {% else %}
 
                                 <td class="price text-center"><strong>Rs.{{cart.price}}</strong></td>
@@ -79,14 +79,25 @@
 
                         </tbody>
                         <tfoot>
+                              
+                            <tr>
+                                <th class="empty" colspan="3"></th>
+                                <th>SUB TOTAL</th>
+                                <th colspan="2" class="sub-total">Rs.{{total}}</th>
+                            </tr>                                                      
 
                             <tr>
                                 <th class="empty" colspan="3"></th>
-                                <th>TOTAL</th>
-                                <th colspan="2" class="total">Rs.{{total}}</th>
+                                <th>SHIPPING</th>
+                                <td colspan="2" class="sub-total"> Rs. 0 </td>
                             </tr>
 
-            
+                            <tr>
+                                <th class="empty" colspan="3"></th>
+                                <th> GRAND TOTAL</th>
+                                <th colspan="2" class="total">Rs.{{total}}</th>
+                            </tr>
+                            
                         </tfoot>
 
                     </table>
@@ -102,7 +113,7 @@
                     <div class="billing-details">
 
                         <div class="section-title">
-                            <h4 class="title">Shipping Details</h4>
+                            <h4 class="title">Billing Details</h4>
                         </div>
                         <p><label for="id_first_name">First name:</label>
                             <input type="text" name="first_name" value="{{ user.first_name }}" class="input"
@@ -136,16 +147,17 @@
                             <h4 class="title">Pay by Credit Card</h4>
                         </div> 
                         <p><label for="full_name">Credit Card Holder</label>
-                            <input type="text" name="full_name" class="input" value=""></p>
+                            <input type="text" name="full_name" class="input" value="" placeholder="Full Name"></p>
                         <p><label for="card_number">Card Number</label>
-                            <input type="text" name="card_number" class="input" value=""></p>
+                            <input type="text" name="card_number" class="input" value="" placeholder="xxxx xxxx xxxx xxxx" ></p>
                         <p><label for="cvv">CVV</label>
-                            <input type="text" name="cvv" class="input" value=""></p>
-                        <p><label for="expdate">Credit Card Exp Date/Year</label>
-                            <input type="text" name="expdate" class="input" placeholder="mm/yy"></p>
+                            <input type="text" name="cvv" class="input" value="" placeholder="***" ></p>
+                        <p><label for="expdate">Credit Card Exp.</label>
+                            <input type="text" name="expdate" class="input" placeholder="mm / yy"></p>
+                            <br>
                         <div class="pull-right">
-                            <button type="submit" class="primary-btn">Complete Order</button>
-                        </div>
+                            <button type="submit" class="primary-btn">Place Order</button>
+                        </div> 
                     </div>
                 </div>
 
@@ -159,3 +171,4 @@
 <!-- /section -->
 
 {% endblock %}
+

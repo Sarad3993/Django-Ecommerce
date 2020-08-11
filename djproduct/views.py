@@ -14,7 +14,7 @@ def add_to_cart(request,id):
     current_user = request.user # access user session information
 
     product_check = Cart.objects.filter(product_id=id) # check product is in cart or not 
-   
+  
     if product_check:
         # now we create a variable (check) to check whether our product is in cart or not 
         check = 1 # product is in cart
@@ -70,7 +70,7 @@ def cart(request):
     return render(request,'cart.html',context_var) 
 
 
-# to delete items from cart 0
+# to delete items from cart:
 @login_required(login_url='/user/login') # Check login
 def delete_from_cart(request,id):
     Cart.objects.filter(id=id).delete()
@@ -138,6 +138,5 @@ def order_product(request):
     profile = UserProfileInfo.objects.get(user_id=current_user.id)
     context_var = {'carts': carts, 'category': category,  'total': total, 'form': form, 'profile': profile }
     return render(request, 'order_products.html', context_var)
-
 
 

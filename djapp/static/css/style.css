@@ -1,4 +1,6 @@
 /*
+Template Name: E-SHOP HTML E-Commerce Template
+Author: yaminncco
 
 Colors:
 	Body 		  : #4A4E5A
@@ -58,15 +60,11 @@ Table OF Contents
 	Typography
 \*----------------------------*/
 
-* {
-  background-color: lavenderblush;
-}
-
 body {
   font-family: 'Hind', sans-serif;
   color: #4A4E5A;
   overflow-x: hidden;
- 
+  background-color: white;
 }
 
 h1, h2, h3, h4, h5, h6 {
