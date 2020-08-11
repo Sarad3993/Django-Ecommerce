@@ -173,8 +173,9 @@
                             </div>
                             {% else %}
 
-                            <a href="/user/login" class="text-uppercase">Login</a> / <a href="/user/signup"
-                                class="text-uppercase">Sign Up</a>
+                            <a href="/user/login" class="text-uppercase"> <strong>  Login </strong>
+                               </a> <strong>  / </strong> <a href="/user/signup"
+                                class="text-uppercase"> <strong> Sign Up </strong></a>
                             {% endif %}
 
                             <ul class="custom-menu">
@@ -191,8 +192,6 @@
                             <a href="/product/cart">
                                 <div class="header-btns-icon">
                                     <i class="fa fa-shopping-cart"></i>
-
-                                    <span class="qty">{{quantity}}</span>
 
                                 </div>
                                 <strong class="text-uppercase">My Cart:</strong>
@@ -537,6 +536,7 @@
 
         <!-- jQuery Plugins -->
         <!-- <script src="{% static 'js/jquery.min.js'%}"></script> -->
+    
         <script src="{% static 'js/bootstrap.min.js' %}"></script>
         <script src="{% static 'js/slick.min.js' %}"></script>
         <script src="{% static 'js/nouislider.min.js' %}"></script>

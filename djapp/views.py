@@ -15,7 +15,8 @@ def homepage(request):
     # if we do -id it means in descending order (i.e products added at last will be displayed)..
     # [:4] limits the number of slider to be shown regardless how much we have added in admin panel
     top_sells = Product.objects.all().order_by('?')[:4]
-    special_offers = Product.objects.all().order_by('?')[:4]  # randomly selected four products
+    
+    special_offers = Product.objects.filter(special_offer=True).order_by('?')[:4]  # randomly selected four products
 
     # To show categories panel in homepage only and hide in others page we do as:
     page = "homepage"
@@ -62,6 +63,7 @@ def category_products(request, id, slug):
     products = Product.objects.filter(category_id=id)
     context_var = {'category': category, 'products': products}
     return render(request, 'products.html', context_var)
+
 
 # for search functionality
 def search(request): 

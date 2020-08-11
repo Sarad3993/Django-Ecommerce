@@ -68,6 +68,7 @@ class Product(models.Model):
     status=models.CharField(max_length=100,choices=STATUS) 
     label = models.CharField(max_length=100,choices=LABEL,blank=True)
     stock = models.CharField(max_length=100,choices=STOCK,blank=True)
+    special_offer = models.BooleanField(default=False)
     create_at=models.DateTimeField(auto_now_add=True)
     update_at=models.DateTimeField(auto_now=True)
 
