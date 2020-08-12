@@ -4,7 +4,6 @@ from mptt.admin import DraggableMPTTAdmin
 
 # Register models here
 
-
 # class CategoryAdmin(admin.ModelAdmin):
 #     list_display = ['title', 'parent', 'status']
 #     list_filter = ['status']
@@ -47,13 +46,16 @@ class ProductImageInline(admin.TabularInline):
 
 class ProductAdmin(admin.ModelAdmin):
     # list is displayed on the basis of above 3 categories
-    list_display = ['title', 'category', 'status', 'image_tag'] 
+    list_display = ['title', 'category','label','items_in_stock','stock','status', 'image_tag'] 
     # list is filtered on the basis of this filed category
-    list_filter = ['category'] # on what basis to filter the list 
-    readonly_fields = ('image_tag',)
+    list_filter = ['category','stock','label','status'] # on what basis to filter the list 
+    readonly_fields = ('image_tag',) # admin cannot modify fields that are set to read_only 
     inlines = [ProductImageInline]
     prepopulated_fields = {'slug': ('title',)} # for automatic slug creation when we type product name 
-    list_editable = ['status']
+    list_editable = ['status','stock','label','items_in_stock'] # provides editing feature directly in products list page 
+    # those attributes that you want to edit must be present in list_display 
+    search_fields = ['title'] # for searching products inside admin panel(really useful if there are many products)
+
 
 class User_ReviewsAdmin(admin.ModelAdmin):
     list_display = ['subject','comment','status','create_at']
