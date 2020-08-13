@@ -240,13 +240,67 @@
 					</div>
 				</div>
 			</div>
-
 		</div>
 		<!-- /Product Details -->
 
+		<br>
+		<br>
+		<br>
+		<!-- section title -->
+		<div class="col-md-12">
+			<div class="section-title">
+				<h2 class="title">Special Offers</h2>
+			</div>
+		</div>
+		<!-- section title -->
+
+		<!-- Product Single -->
+		{% for product in special_offers %}
+		<div class="col-md-3 col-sm-6 col-xs-6">
+			<div class="product product-single">
+				<div class="product-thumb">
+					{% if product.label %}
+					<div class="product-label">
+						<span> {{product.label}}</span>
+					</div>
+					{% endif %}
+					<a href="/product/{{product.id}}/{{product.slug}}" class="main-btn quick-view"><i
+							class="fa fa-search-plus"></i> Quick view</a>
+					<img src="{{product.image.url}}" alt="Error loading image" height="200" width="200">
+				</div>
+
+				<div class="product-body">
+					{% if product.discounted_price > 0 %}
+					<h3 class="product-price">Rs.{{product.discounted_price}}
+						<del class="product-old-price">Rs.{{product.price}}</del>
+					</h3>
+					{% else %}
+					<h3 class="product-price"> Rs.{{product.price}}</h3>
+					{% endif %}
+					<!-- # for average review and count  -->
+					<div class="product-rating">
+						<i class="fa fa-star{% if product.average_review < 1%}-o empty{% endif%}"></i>
+						<i class="fa fa-star{% if product.average_review < 2%}-o empty{% endif%}"></i>
+						<i class="fa fa-star{% if product.average_review < 3%}-o empty{% endif%}"></i>
+						<i class="fa fa-star{% if product.average_review < 4%}-o empty{% endif%}"></i>
+						<i class="fa fa-star{% if product.average_review < 5%}-o empty{% endif%}"></i>
+						{{product.average_review}}/{{product.count_review}}
+					</div>
+
+					<h2 class="product-name"><a href="/product/{{product.id}}/{{product.slug}}">{{product.title}}</a>
+					</h2>
+					<div class="product-btns">
+						<button class="main-btn icon-btn"><i class="fa fa-heart"></i></button>
+						<a href="/product/add_to_cart/{{product.id}}" class="primary-btn add-to-cart"><i
+								class="fa fa-shopping-cart"></i> Add to
+							Cart</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		{% endfor %}
+		<!-- /Product Single -->
 		
-
-
 	</div>
 	<!-- /row -->
 </div>

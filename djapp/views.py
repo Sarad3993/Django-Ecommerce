@@ -63,7 +63,6 @@ def category_products(request, id, slug):
     category = Category.objects.filter(id=id)
     products = Product.objects.filter(category_id=id)
     context_var = {'category': category, 'products': products}
-
     return render(request, 'products.html', context_var)
 
 # for search functionality
@@ -113,11 +112,11 @@ def search_auto_complete(request):
 def product_detail(request, id, slug):
     category = Category.objects.all()
     product = Product.objects.get(pk=id)
+    special_offers = Product.objects.filter(special_offer=True).order_by('?')[:4]
     images = Images.objects.filter(product_id=id)
     reviews = User_Reviews.objects.filter(product_id=id,status='True') # filter those user reviews of that specific product from database whose status is set to True in admin panel 
-    context_var = {'category': category, 'product': product,'images':images,'reviews':reviews}
-
-    return render(request,'product_detail.html', context_var) 
+    context_var = {'category': category, 'product': product,'images':images,'reviews':reviews,'special_offers':special_offers}
+    return render(request,'product_detail.html', context_var)
 
  
 # for product user review:
