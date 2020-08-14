@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+ {% load static %} 
+ {% block title%} Wishlist {%endblock %} 
+
+{% block content %}
+<!-- BREADCRUMB -->
+<div id="breadcrumb">
+    <div class="container">
+        <ul class="breadcrumb">
+            <li><a href="/">Home</a></li>
+            <li class="active">Wishlist</li>
+        </ul>
+    </div>
+</div>
+<!-- /BREADCRUMB -->
+
+
+<!-- section -->
+<div class="section">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+            <div class="col-md-10">
+                <div class="order-summary clearfix">
+                    <div class="section-title">
+                        <h3 class="title">My Wishlist</h3>
+                    </div>
+                    <table class="shopping-cart-table table">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Product</th>
+                                <th>Price</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for wish in wishs %}
+                            <tr>
+                                <td class="thumb">
+                                    <a href="/product/{{wish.product.id}}/{{wish.product.slug}}">
+                                        <img src="{{wish.product.image.url}}" alt="No image" height="50" width="60" />
+                                    </a>
+                                </td>
+
+                                <td class="details">
+                                    <a
+                                        href="/product/{{wish.product.id}}/{{wish.product.slug}}">{{wish.product.title}}</a>
+                                </td>
+
+                                {% if wish.discounted_price > 0 %}
+                                <td class="price">
+                                    <strong>Rs.{{wish.discounted_price}}</strong><br /><del
+                                        class="font-weak"><small>Rs.{{wish.price}}</small></del>
+                                </td>
+                                {% else %}
+
+                                <td class="price"><strong>Rs.{{wish.price}}</strong></td>
+
+                                {% endif %}
+
+                                <td class="text-right">
+                                    <a href="/product/delete_from_wishlist/{{ wish.id }}"
+                                        onclick="return confirm('Are you sure you want to remove this item from wishlist?')"
+                                        class="main-btn icon-btn"><i class="fa fa-close"></i></a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    <br />
+                    <div class="pull-left">
+                        <a href="/" class="primary-btn">Continue Shopping</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+</div>
+<!-- /section -->
+
+{% endblock %}

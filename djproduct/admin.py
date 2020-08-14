@@ -78,7 +78,7 @@ class OrderProductInline(admin.TabularInline):
 class OrderAdmin(admin.ModelAdmin):
     list_display = ['first_name', 'last_name','phone','city','total','status']
     list_filter = ['status']
-    readonly_fields = ('user','first_name', 'last_name','address','city','country','phone','ip_address','total') 
+    readonly_fields = ('user','first_name', 'last_name','address','city','country','phone','ip_address','code','total')
     can_delete = False 
     inlines = [OrderProductInline]
     list_editable = ['status']
@@ -88,6 +88,10 @@ class OrderProductAdmin(admin.ModelAdmin):
     list_display = ['user', 'product','price','discounted_price','quantity','total_price','items_in_stock','status']
     list_filter = ['user','status']
     list_editable = ['status']
+
+class WishlistAdmin(admin.ModelAdmin):
+    list_display = ['user','product']
+    list_filter = ['user']
 
 
 
@@ -104,5 +108,7 @@ admin.site.register(Cart,CartAdmin)
 admin.site.register(Order,OrderAdmin)
 
 admin.site.register(OrderProduct,OrderProductAdmin)
+
+admin.site.register(Wishlist,WishlistAdmin)
 
 

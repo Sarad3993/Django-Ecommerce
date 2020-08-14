@@ -195,7 +195,7 @@ class OrderForm(ModelForm):
         model = Order
         fields = ['first_name','last_name','address','phone','city','country']
 
-
+# for showing product wise orders : 
 class OrderProduct(models.Model):
     STATUS = (('New', 'New'),('Accepted', 'Accepted'),('Canceled', 'Canceled'),
     )
@@ -224,4 +224,18 @@ class OrderProduct(models.Model):
             return self.quantity * self.product.price
 
 
+class Wishlist(models.Model):
+    user = models.ForeignKey(User,on_delete=models.SET_NULL,null=True)
+    product = models.ForeignKey(Product, on_delete=models.SET_NULL,null=True)
+ 
+ 
+    def __str__(self):
+        return self.product.title
+    
+    @property
+    def price(self):
+        return self.product.price
 
+    @property
+    def discounted_price(self):
+        return self.product.discounted_price

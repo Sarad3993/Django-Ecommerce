@@ -7,7 +7,6 @@ from djapp.forms import *
 import json 
 
 
-
 def homepage(request):
     info = Information.objects.get(pk=True)
     category = Category.objects.all()
