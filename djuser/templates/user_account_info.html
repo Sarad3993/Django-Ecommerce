@@ -38,12 +38,8 @@
                     </div>
                 </div>
 
-                 <table class="shopping-cart-table table">
+                 <table class=" table">
                     <tr>
-                        <th class="text-left">
-                            <a href="/user/update_profile" class="primary-btn">Update Profile</a>
-                            <a href="/user/change_password" class="primary-btn">Change Password</a>
-                        </th>
                         <td><img src="{{ profile.image.url }}" style="border-radius: 25px; height: 160px "></td>
                     </tr>
                     <tr>
@@ -76,7 +72,10 @@
                         <th class="text-left">Country</th>
                         <td class="text-left">{{ profile.country}}</td>
                     </tr>
-
+                    <th class="text-left">
+                        <a href="/user/update_profile" class="primary-btn">Update Profile</a>
+                        <a href="/user/change_password" class="primary-btn">Change Password</a>
+                    </th>
                 </table>
             </div>
 

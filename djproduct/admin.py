@@ -35,14 +35,17 @@ class CategoryAdmin2(DraggableMPTTAdmin):
     related_products_cumulative_count.short_description = 'Related products(in tree)'
 
 
-# manage multiple images in same page in django admin panel
-
+# manage multiple images inside same page: 
+# for that we should create a separate model of the fields that we want to attach inside another model
+# and then use the inlines attribute and pass the class inside the list 
+# note: Tabularinline class ---> like table rows(takes less space) WHILE stackedinline class ---> one row upon another piled up (takes more space)
 class ProductImageInline(admin.TabularInline):
     model = Images
-    extra = 5  # denotes how many images u want to add
+    extra = 5  # denotes how many fields of images u want to add
     # can set this value as per your choice
     # Now 5 images field will be created inside each Product section
 
+    # max_num = 5 (maximum no of extra fields that you need...can't create more than that if we use this attribute)
 
 class ProductAdmin(admin.ModelAdmin):
     # list is displayed on the basis of above 3 categories
@@ -55,8 +58,8 @@ class ProductAdmin(admin.ModelAdmin):
     list_editable = ['status','stock','label','items_in_stock'] # provides editing feature directly in products list page 
     # those attributes that you want to edit must be present in list_display 
     search_fields = ['title'] # for searching products inside admin panel(really useful if there are many products)
-
-
+    
+    
 class User_ReviewsAdmin(admin.ModelAdmin):
     list_display = ['subject','comment','status','create_at']
     list_filter = ['status']
@@ -77,8 +80,10 @@ class OrderProductInline(admin.TabularInline):
 
 class OrderAdmin(admin.ModelAdmin):
     list_display = ['first_name', 'last_name','phone','city','total','status']
+    list_display_links = ['first_name','last_name']
     list_filter = ['status']
-    readonly_fields = ('user','first_name', 'last_name','address','city','country','phone','ip_address','code','total')
+    readonly_fields = ('first_name', 'last_name','address','city','country','phone','ip_address','code','total')
+    exclude = ('user',) # to hide certain field
     can_delete = False 
     inlines = [OrderProductInline]
     list_editable = ['status']
@@ -93,6 +98,11 @@ class WishlistAdmin(admin.ModelAdmin):
     list_display = ['user','product']
     list_filter = ['user']
 
+# note: We can also use the decorator to register the models like as:
+# @admin.register(Wishlist)
+# class WishlistAdmin(admin.ModelAdmin):
+#     list_display = ['user','product']
+#     list_filter = ['user']
 
 
 admin.site.register(Category, CategoryAdmin2)

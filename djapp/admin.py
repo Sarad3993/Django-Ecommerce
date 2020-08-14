@@ -1,5 +1,6 @@
 from django.contrib import admin
 from djapp.models import *
+from django.contrib.auth.models import Group
 
 
 class InformationAdmin(admin.ModelAdmin):
@@ -16,3 +17,7 @@ class Contact_MessageAdmin(admin.ModelAdmin):
 admin.site.register(Information,InformationAdmin)
 
 admin.site.register(Contact_Message,Contact_MessageAdmin)
+
+
+# for removing unnecessary app in django dashboard: 
+admin.site.unregister(Group)

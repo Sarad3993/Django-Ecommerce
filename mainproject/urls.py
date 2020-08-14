@@ -20,6 +20,9 @@ from django.urls import path, include
 from django.contrib.auth import views as auth_views
 
 
+admin.site.index_title = "Welcome to E-SHOP Admin Dashboard"
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('djapp.urls')),
