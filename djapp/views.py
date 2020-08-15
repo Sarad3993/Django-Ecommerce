@@ -10,9 +10,9 @@ import json
 def homepage(request):
     info = Information.objects.get(pk=True)
     category = Category.objects.all()
-    slider = Product.objects.all().order_by('-id')[:4]
-    # if we do -id it means in descending order (i.e products added at last will be displayed)..
-    # [:4] limits the number of slider to be shown regardless how much we have added in admin panel
+    slider = Product.objects.all().order_by('-id')[:5]
+    # if we do -id it means in descending order (i.e products added at last will be displayed at first)..
+    # [:5] limits the number of slider to be shown regardless how much we have added in admin panel
 
     new_products = Product.objects.filter(label='New').order_by('?')[:4] # filter new products 
     top_sells = Product.objects.filter(label__in=['Sale','Hot']).order_by('?')[:4] # filter hot and sale products (use __in[''])

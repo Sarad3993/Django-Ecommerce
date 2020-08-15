@@ -14,7 +14,8 @@
     <meta name="description" content="{{info.description}}">
 
     <!-- Google font -->
-    <link href="https://fonts.googleapis.com/css?family=Hind:400,700" rel="stylesheet">
+    <!-- <link href="https://fonts.googleapis.com/css?family=Hind:400,700" rel="stylesheet"> -->
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+Bhai+2&display=swap" rel="stylesheet">
 
     <!-- Bootstrap -->
     <link type="text/css" rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
@@ -52,7 +53,7 @@
         <div id="top-header">
             <div class="container">
                 <div class="pull-left">
-                    <span>Welcome to E-Shop </span>
+                    <span> <strong> Welcome to E-Shop </strong> </span>
                     {% if messages %}
                     {% for message in messages %}
                     <div class="alert alert-{{message.tags}}" role="alert">
@@ -63,7 +64,6 @@
                 </div>
                 <div class="pull-right">
                     <ul class="header-top-links">
-                        <li><a href="#">Store</a></li>
                         <li><a href="#">Newsletter</a></li>
                         <li><a href="#">FAQ</a></li>
                         <li class="dropdown default-dropdown">
@@ -159,51 +159,65 @@
                 </div>
                 <div class="pull-right">
                     <ul class="header-btns">
+                             <!-- Cart -->
+                                   <li class="header-cart dropdown default-dropdown">
+                                    <div> 
+                                     <strong class="text-uppercase"> <a href="/product/cart">
+                                        My Cart: </strong>
+                                    </div>
+                                    <div class="header-btns-icon">
+                                            <i class="fa fa-shopping-cart"></i>
+        
+                                    </div>
+                                    </a>
+                                </li>
+                                <!-- /Cart -->
+                                    &emsp;&emsp;
                         <!-- Account -->
                         <li class="header-account dropdown default-dropdown">
                             <!-- if user is logged in do not show login or signup info ;  -->
+                    
                             {% if user.id is not None %}
+                
                             <div class="dropdown-toggle" role="button" data-toggle="dropdown" aria-expanded="true">
+                                <div> 
+                                    <strong class="text-uppercase">{{user.username }} <i
+                                            class="fa fa-caret-down"></i></strong>
+                                        </div>
                                 <div class="header-btns-icon">
                                     <img src="{{request.session.user_image}}" alt=""
                                         style="height: 45px; margin-top:-2px; width:38px">
                                 </div>
-                                <strong class="text-uppercase">{{user.username }} <i
-                                        class="fa fa-caret-down"></i></strong>
                             </div>
                             {% else %}
 
-                            <a href="/user/login" class="text-uppercase"> <strong> Login </strong>
-                            </a> <strong> / </strong> <a href="/user/signup" class="text-uppercase"> <strong> Sign Up
-                                </strong></a>
+                        <div> 
+                            <strong> <a href="/user/signup" class="text-uppercase"> Sign Up <i class="fa fa-user-plus"></i>
+                            </a> </strong>
+                            </div>
+                            <br>
+
+                            <div> 
+                                <strong> <a href="/user/login" class="text-uppercase">Login  <i class="fa fa-sign-in" aria-hidden="true"></i>
+                                </a> </strong>
+                            </div>
                             {% endif %}
 
                             <ul class="custom-menu">
                                 <li><a href="/user"><i class="fa fa-user-o"></i> My Profile</a></li>
                                 <li><a href="/product/wishlist"><i class="fa fa-heart-o"></i> My Wishlist</a></li>
-                                <li><a href="/product/cart"><i class="fa fa-check"></i> My Cart</a></li>
-                                <li><a href="/user/logout"><i class="fa fa-user-plus"></i> Logout </a></li>
+                                <li><a href="/product/cart"><i class="fa fa-shopping-cart"></i> My Cart</a></li>
+                                <li><a href="/user/logout"><i class="fa fa-sign-out"></i> Logout </a></li>
                             </ul>
                         </li>
                         <!-- /Account -->
-
-                        <!-- Cart -->
-                        <li class="header-cart dropdown default-dropdown">
-                            <a href="/product/cart">
-                                <div class="header-btns-icon">
-                                    <i class="fa fa-shopping-cart"></i>
-
-                                </div>
-                                <strong class="text-uppercase">My Cart:</strong>
-                            </a>
-                        </li>
-                        <!-- /Cart -->
-
+                    <div> 
                         <!-- Mobile nav toggle-->
                         <li class="nav-toggle">
                             <button class="nav-toggle-btn main-btn icon-btn"><i class="fa fa-bars"></i></button>
                         </li>
                         <!-- / Mobile nav toggle -->
+                    </div>
                     </ul>
                 </div>
             </div>
@@ -293,18 +307,15 @@
                     <!-- footer widget -->
                     <div class="col-md-3 col-sm-6 col-xs-6">
                         <div class="footer">
-                            <!-- footer logo -->
-                            <div class="footer-logo">
-                                <a class="logo" href="#">
-                                    <img src="{% static './img/logo.png' %}" alt="">
-                                </a>
-                            </div>
-                            <!-- /footer logo -->
-
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                incididunt ut
-                                labore et dolore magna</p>
-
+                            <h3 class="footer-header">About Us</h3>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut.</p>
+								<ul class="footer-links">
+                                    <li> <strong>  <a href="#"><i class="fa fa-map-marker"></i>&emsp;  Maitidevi 29 Kathmandu
+                                        </a>  </strong> </li>
+									<li> <strong>  <a href="#"><i class="fa fa-phone"></i>&emsp;  +977 9843868623  </a> </strong> </li>
+									<li> <strong> <a href="#"> <i class="fa fa-envelope-o"> </i>&emsp;  risingstar3993@gmail.com  </a> </strong> </li>
+								</ul>
+                                    <br>
                             <!-- footer social -->
                             <ul class="footer-social">
                                 <li><a href="#"><i class="fa fa-facebook"></i></a></li>
@@ -338,12 +349,14 @@
                     <!-- footer widget -->
                     <div class="col-md-3 col-sm-6 col-xs-6">
                         <div class="footer">
-                            <h3 class="footer-header">Customer Service</h3>
+                            <h3 class="footer-header">Services</h3>
                             <ul class="list-links">
                                 <li><a href="#">About Us</a></li>
-                                <li><a href="#">Shiping & Return</a></li>
-                                <li><a href="#">Shiping Guide</a></li>
-                                <li><a href="#">FAQ</a></li>
+                                <li><a href="#">Contact Us</a></li>
+                                <li><a href="#">Orders and Returns</a></li>
+                                <li><a href="#">Track My Order</a></li>
+                                <li><a href="#">Privacy Policy</a></li>
+                                <li><a href="#">Terms and Conditions</a></li>
                             </ul>
                         </div>
                     </div>
@@ -373,10 +386,7 @@
                         <div class="footer-copyright">
 
                             Copyright &copy;
-                            <script>document.write( new Date().getFullYear() );</script> All rights reserved | This
-                            template
-                            is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a
-                                href="https://colorlib.com" target="_blank">Colorlib</a>
+                            <script>document.write( new Date().getFullYear() );</script> All rights reserved 
                         </div>
                         <!-- /footer copyright -->
                     </div>

@@ -23,25 +23,20 @@
     <!-- container -->
     <div class="container">
         <!-- row -->
-        <div class="row">
-
-            <!-- create two separate divisions  -->
-            <!-- # for user panel  -->
-            <div class="col-md-4">
-                {% include "user_panel.html" %}
-            </div>
-
+        <!-- <div class="row"> -->
             <!-- # for user profile information  -->
-            <div class="col-md-8">
+            <div class="col-md-7">
                     <div class="section-title">
-                        <h3 class="title">User Profile Info</h3>
+                        <h3 class="title">My Profile Info</h3>
                     </div>
+                    <br>
+                <div> 
+                    <img src="{{ profile.image.url }}" style="border-radius: 25px; height: 165px ">
                 </div>
-
-                 <table class=" table">
-                    <tr>
-                        <td><img src="{{ profile.image.url }}" style="border-radius: 25px; height: 160px "></td>
-                    </tr>
+              
+                
+                <div style="margin-top:20px;" > 
+                 <table class="table shopping-cart-table table-striped ">
                     <tr>
                         <th class="text-left">Full Name</th>
                         <td class="text-left">{{ user.first_name}} {{ user.last_name}} </td>
@@ -77,11 +72,10 @@
                         <a href="/user/change_password" class="primary-btn">Change Password</a>
                     </th>
                 </table>
+               
             </div>
 
-
         </div>
-        <!-- /row -->
     </div>
     <!-- /container -->
 </div>

@@ -61,8 +61,9 @@ Table OF Contents
 \*----------------------------*/
 
 body {
-  font-family: 'Hind', sans-serif;
-  color: #4A4E5A;
+  font-family:'Baloo Bhai 2', cursive;;
+
+  color: black;
   overflow-x: hidden;
   background-color: white;
 }
@@ -151,7 +152,7 @@ hr {
 
 .primary-btn {
   color: #FFF;
-  background-color: #F8694A;
+  background-color:crimson;
 }
 
 .primary-btn:hover, .primary-btn:focus {
@@ -167,7 +168,7 @@ hr {
   width: 100%;
   height: 40px;
   padding: 0px 15px;
-  border: none;
+  border: 1px solid black;
   background-color: transparent;
   -webkit-box-shadow: 0px 0px 0px 1px #DADADA inset, 0px 0px 0px 5px transparent;
   box-shadow: 0px 0px 0px 1px #DADADA inset, 0px 0px 0px 5px transparent;
@@ -233,7 +234,7 @@ textarea.input {
 }
 
 .list-links li>a:hover, .list-links li>a:focus, .list-links li.active>a {
-  color: #F8694A;
+  color: crimson;
   -webkit-transform: translateX(10px);
   -ms-transform: translateX(10px);
   transform: translateX(10px);
@@ -254,7 +255,7 @@ textarea.input {
 }
 
 .section-grey {
-  background: #F6F7F8;
+  background: lavender;
 }
 
 .section-title {
@@ -311,6 +312,7 @@ textarea.input {
 #header {
   padding-top: 15px;
   padding-bottom: 15px;
+  background-color: lavender;
 }
 
 /*----------------------------*\
@@ -321,6 +323,7 @@ textarea.input {
   padding-top: 5px;
   padding-bottom: 5px;
   border-bottom: 1px solid #DADADA;
+  background-color: honeydew;
 }
 
 .header-top-links>li {
@@ -367,6 +370,8 @@ textarea.input {
 .header-search>form .search-input {
   padding-left: 150px;
   padding-right: 45px;
+  border: 1px solid black;
+  background-color:ghostwhite;
 }
 
 .header-search>form .search-categories {
@@ -374,6 +379,8 @@ textarea.input {
   left: 0px;
   top: 0px;
   width: 135px;
+  border: 1px solid black;
+  background-color: seashell;
 }
 
 .header-search>form .search-btn {
@@ -382,8 +389,9 @@ textarea.input {
   right: 0px;
   width: 40px;
   height: 40px;
-  background-color: transparent;
-  border: none;
+  background-color:salmon;
+  border: 1px solid #DADADA;
+  border: 1px solid black;
 }
 
 /*----------------------------*\
@@ -409,7 +417,7 @@ textarea.input {
   line-height: 40px;
   text-align: center;
   color: #30323A;
-  background-color: #FFF;
+  background-color: snow;
   border: 1px solid #DADADA;
 }
 
@@ -488,7 +496,7 @@ textarea.input {
   padding: 15px;
   display: block;
   text-transform: uppercase;
-  background: #F8694A;
+  background:crimson;
   color: #FFF;
   font-weight: 700;
 }
@@ -542,7 +550,7 @@ textarea.input {
 }
 
 .category-nav .category-list>li>a:hover, .category-nav .category-list>li>a:focus, .category-nav .category-list>li.dropdown.open>a {
-  color: #F8694A;
+  color: crimson;
 }
 
 /*----------------------------*\
@@ -575,7 +583,7 @@ textarea.input {
 }
 
 .menu-nav .menu-list>li>a:hover, .menu-nav .menu-list>li>a:focus, .menu-nav .menu-list>li.dropdown.open>a {
-  color: #F8694A;
+  color: crimson;
 }
 
 /*----------------------------*\
