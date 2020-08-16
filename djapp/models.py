@@ -57,3 +57,6 @@ class ContactForm(ModelForm): # u have to import Modelform first
             'subject' : TextInput(attrs={'class': 'input','placeholder':'Enter your subject'}),
             'message' : Textarea(attrs={'class': 'input','placeholder':'Enter your message'}),
         }
+
+
+

@@ -4,7 +4,7 @@ from djapp.models import *
 from djproduct.models import *
 from django.contrib import messages
 from djapp.forms import *
-import json 
+import json
 
 
 def homepage(request):
@@ -20,8 +20,8 @@ def homepage(request):
 
     # To show categories panel in homepage only and hide in others page we do as:
     page = "homepage"
-    context_var = {'info': info, 'page': page, 'category': category, 'slider': slider,'new_products':new_products,
-                   'top_sells': top_sells, 'special_offers': special_offers}
+
+    context_var = {'info': info, 'page': page, 'category': category, 'slider': slider,'new_products':new_products,'top_sells': top_sells, 'special_offers': special_offers}
     # context_var is a dictionary in key:value pair form
     # we can now call every fields inside Information model class by using key 'info' wherever required in template
     return render(request, 'index.html', context_var)
