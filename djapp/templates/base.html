@@ -274,14 +274,22 @@
                         </ul>
                     </div>
                     <!-- /category nav -->
-
-
+                    
                     <!-- menu nav -->
                     <div class="menu-nav">
                         <span class="menu-header">Menu <i class="fa fa-bars"></i></span>
                         <ul class="menu-list">
-                            <li><a href="/">Home</a></li>
-                            <li><a href="/aboutus">About Us </a> </li>
+                            <li><a href="/">Home</a></li> &emsp;
+                            <li><a href="/aboutus">About Us </a> </li> &emsp;
+                            <li class="dropdown default-dropdown"><a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true"> Shop <i class="fa fa-caret-down"></i></a>
+                                <ul class="custom-menu">
+                                    <li><a href="/product/wishlist">Wishlist</a></li>
+                                    <li><a href="/product/cart">Cart</a></li>
+                                    {% if user.is_authenticated%}
+                                    <li><a href="/product/order_product">Checkout</a></li>
+                                    {% endif %}
+                                </ul>
+                            </li> &emsp;
                             <li><a href="/contact">Contact</a></li>
                         </ul>
                     </div>
@@ -307,15 +315,14 @@
                     <!-- footer widget -->
                     <div class="col-md-3 col-sm-6 col-xs-6">
                         <div class="footer">
-                            <h3 class="footer-header">About Us</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut.</p>
+                            <h3 class="footer-header">Contact Us</h3>
 								<ul class="footer-links">
                                     <li> <strong>  <a href="#"><i class="fa fa-map-marker"></i>&emsp;  Maitidevi 29 Kathmandu
                                         </a>  </strong> </li>
-									<li> <strong>  <a href="#"><i class="fa fa-phone"></i>&emsp;  +977 9843868623  </a> </strong> </li>
-									<li> <strong> <a href="#"> <i class="fa fa-envelope-o"> </i>&emsp;  risingstar3993@gmail.com  </a> </strong> </li>
+									<li> <strong>  <a href="#"><i class="fa fa-phone"></i>&ensp;  +977 9843868623  </a> </strong> </li>
+									<li> <strong> <a href="#"> <i class="fa fa-envelope-o"> </i>&ensp;  risingstar3993@gmail.com  </a> </strong> </li>
 								</ul>
-                                    <br>
+                                 <br>
                             <!-- footer social -->
                             <ul class="footer-social">
                                 <li><a href="#"><i class="fa fa-facebook"></i></a></li>
@@ -369,7 +376,7 @@
                             <p>Subscribe to our newsletter service to get daily updates. </p>
                             <form>
                                 <div class="form-group">
-                                    <input class="input",placeholder="Enter Email Address">
+                                    <input class="input" placeholder="Enter email address">
                                 </div>
                                 <button class="primary-btn">Join Newsletter</button>
                             </form>
@@ -378,16 +385,16 @@
                     <!-- /footer subscribe -->
                 </div>
                 <!-- /row -->
-                <hr>
+                <hr> 
                 <!-- row -->
                 <div class="row">
                     <div class="col-md-8 col-md-offset-2 text-center">
                         <!-- footer copyright -->
+                        <strong>
                         <div class="footer-copyright">
-
                             Copyright &copy;
                             <script>document.write( new Date().getFullYear() );</script> All rights reserved 
-                        </div>
+                        </div>  </strong>
                         <!-- /footer copyright -->
                     </div>
                 </div>
@@ -399,7 +406,6 @@
 
         <!-- jQuery Plugins -->
         <!-- <script src="{% static 'js/jquery.min.js'%}"></script> -->
-
         <script src="{% static 'js/bootstrap.min.js' %}"></script>
         <script src="{% static 'js/slick.min.js' %}"></script>
         <script src="{% static 'js/nouislider.min.js' %}"></script>

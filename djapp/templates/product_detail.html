@@ -98,7 +98,7 @@
 								&nbsp;{{product.brand}} </span></p>
 						<br>
 						<p> <strong>About this item:</strong> <br> {{product.description|safe}} </p>
-						<br>
+						
 						<p> <strong> Add to Wishlist:&nbsp; <a href="/product/add_to_wishlist/{{product.id}}" class="main-btn icon-btn"><i
 										class="fa fa-heart"></i></a> </strong> </p>
 						<br>
@@ -283,7 +283,7 @@
 						<i class="fa fa-star{% if product.average_review < 3%}-o empty{% endif%}"></i>
 						<i class="fa fa-star{% if product.average_review < 4%}-o empty{% endif%}"></i>
 						<i class="fa fa-star{% if product.average_review < 5%}-o empty{% endif%}"></i>
-						{{product.average_review}}/{{product.count_review}}
+						{{product.average_review|stringformat:".2f"}}/{{product.count_review}}
 					</div>
 
 					<h2 class="product-name"><a href="/product/{{product.id}}/{{product.slug}}">{{product.title}}</a>

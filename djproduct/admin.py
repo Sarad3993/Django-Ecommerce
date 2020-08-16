@@ -35,7 +35,7 @@ class CategoryAdmin2(DraggableMPTTAdmin):
     related_products_cumulative_count.short_description = 'Related products(in tree)'
 
 
-# manage multiple images inside same page: 
+# Manage multiple images inside same page: 
 # for that we should create a separate model of the fields that we want to attach inside another model
 # and then use the inlines attribute and pass the class inside the list 
 # note: Tabularinline class ---> like table rows(takes less space) WHILE stackedinline class ---> one row upon another piled up (takes more space)

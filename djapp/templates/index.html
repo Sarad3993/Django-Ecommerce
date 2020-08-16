@@ -78,7 +78,7 @@
 							<i class="fa fa-star{% if product.average_review < 3%}-o empty{% endif%}"></i>
 							<i class="fa fa-star{% if product.average_review < 4%}-o empty{% endif%}"></i>
 							<i class="fa fa-star{% if product.average_review < 5%}-o empty{% endif%}"></i>
-							{{product.average_review}}/{{product.count_review}}
+							{{product.average_review|stringformat:".2f"}}/{{product.count_review}}
 						</div>
 
 						<h2 class="product-name"><a
@@ -136,7 +136,7 @@
 							<i class="fa fa-star{% if product.average_review < 3%}-o empty{% endif%}"></i>
 							<i class="fa fa-star{% if product.average_review < 4%}-o empty{% endif%}"></i>
 							<i class="fa fa-star{% if product.average_review < 5%}-o empty{% endif%}"></i>
-							{{product.average_review}}/{{product.count_review}}
+							{{product.average_review|stringformat:".2f"}}/{{product.count_review}}
 						</div>
 
 						<h2 class="product-name"><a
@@ -196,7 +196,7 @@
 							<i class="fa fa-star{% if p_product.average_review < 3%}-o empty{% endif%}"></i>
 							<i class="fa fa-star{% if p_product.average_review < 4%}-o empty{% endif%}"></i>
 							<i class="fa fa-star{% if p_product.average_review < 5%}-o empty{% endif%}"></i>
-							{{p_product.average_review}}/{{p_product.count_review}}
+							{{p_product.average_review|stringformat:".2f"}}/{{p_product.count_review}}
 						</div>
 
 						<h2 class="product-name"><a
@@ -217,5 +217,4 @@
 	<!-- /container -->
 </div>
 <!-- /section -->
-
 {% endblock %}
