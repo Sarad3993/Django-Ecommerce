@@ -1,7 +1,6 @@
 # **Django E-commerce**
 ### *Hello guys! welcome to my django e-commerce project...*
 
-
 ## What makes this project stand out?
 * Customized interactive admin panel using **bootstrap-admin**... Say bye bye to the default django Admin dashboard
 * Categories and Sub-categories managed using&nbsp; **Django-MPTT** ... wanna know more about it! Click&nbsp; **[here](https://django-mptt.readthedocs.io/en/latest/overview.html)** 
@@ -9,6 +8,7 @@
 * Created **Auto-complete Search** &nbsp;functionality (like as in amazon,flipkart) using&nbsp; **jQuery AJAX Autocomplete Widget**... sounds cool right!
 * **Multiple image gallery** &nbsp;for a single product(like as in amazon,flipkart) inside product details section 
 * Users/Customers can&nbsp; **rate a product** and&nbsp; **write a review** on that product... Average rating&nbsp; is displayed out of total ratings count..
+* **Detailed Specifications** of every products listed out..
 * User can update their **profile/account information** any time they wish..
 * Do you often forget passwords ? If yes, i got u...it supports the functionality to **reset passwords** using email.. Also u can **change your old passwords** anytime..
 * Nevertheless&nbsp; **Checkout process** is also working perfect (in case you wonder ; it's just a fake checkout that let's user to enter credit card credentials and displays as payment done!.. Integrating payment gateway api for localhost projects is a tedious job)
@@ -22,7 +22,6 @@
 #### Then install pip as: &nbsp; `python get-pip.py`
 
 #### Now install following packages one by one:
-<br> 
 
 `pip install django`
 
@@ -51,7 +50,7 @@ python manage.py runserver
 
 <br>
 
-> If u wanna access admin section Username and Passwords both are:&nbsp; **admin**
+> If u wanna access admin section both Username and Passwords are:&nbsp; **admin**
 
 ---
 
@@ -59,31 +58,26 @@ python manage.py runserver
 <br>
 
 <p align="center">
-<img src="Screenshots/admin panel 2.png" width="600"> <img src="Screenshots/admin panel 3.png" width="600">
-<img src="Screenshots/index2.png"width="600">
-<img src="Screenshots/reviews and rating.png"width="600">
-<img src="Screenshots/User Profile Info.png"width="600">
-<img src="Screenshots/Checkout Section.png"width="600">
+<img src="Screenshots/admin panel 2.png" width="550"> <img src="Screenshots/admin panel 3.png" width="550">
+<img src="Screenshots/index2.png"width="550">
+<img src="Screenshots/reviews and rating.png"width="550">
+<img src="Screenshots/User Profile Info.png"width="550">
+<img src="Screenshots/Checkout Section.png"width="550">
 </p>
 
+---
 <br>
 
----
-
-
-## Wanna work on this template ?
-### **Download it here:** &nbsp;**[E-Shop e-commerce template](https://colorlib.com/wp/template/e-shop/ "E-Shop")**
-
 ## **How to contribute to this project:**
-### 1. Run this project in your pc and if you encounter any errors or bugs feel free to report it 
-### 2. You can also fork this repo and create a pull request
-### 3. Email me at:&ensp;**risingstar3993@gmail.com** for any issues.. your feedback is most welcomed!
+#### 1. Run this project in your pc and if you encounter any errors or bugs feel free to report it 
+#### 2. You can also fork this repo and create a pull request
+#### 3. Email me at:&ensp;*risingstar3993@gmail.com*  for any issues.. your feedback is most welcomed!
 
 <br>
 
 > Even after working for days and nights still there are many things left to be implemented in this project ... E-commerce is itself a huge project to complete single-handedly... Nevertheless if u 👍 this project plz give it a ⭐️ ... Motivates me to work further hard!..
 
-> Stay happy&nbsp; Stay Calm..&nbsp; Keep Coding! 😃 
+> Stay happy😃&nbsp; Stay Calm..&nbsp; Keep Coding!  
 
 
 
