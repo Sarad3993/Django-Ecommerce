@@ -1,7 +1,6 @@
 # **Django E-commerce**
+### *Hello guys! welcome to my django e-commerce project...*
 
-## *Hello guys! welcome to my django e-commerce project...*
-<br>
 
 ## What makes this project stand out?
 * Customized interactive admin panel using **bootstrap-admin**... Say bye bye to the default django Admin dashboard
@@ -14,22 +13,15 @@
 * Do you often forget passwords ? If yes, i got u...it supports the functionality to **reset passwords** using email.. Also u can **change your old passwords** anytime..
 * Nevertheless&nbsp; **Checkout process** is also working perfect (in case you wonder ; it's just a fake checkout that let's user to enter credit card credentials and displays as payment done!.. Integrating payment gateway api for localhost projects is a tedious job)
 
-
-
-<br>
-
 *** 
-<br>
 
 ## **Before running this project you need to install these apps and packages:**
-<br>
 
-### First of all you need to have python **3.6** or **above** installed in your system.
-### Get it from here:&nbsp; **[Python](https://www.python.org/downloads/ "Python")**
-### Then install pip as: &nbsp; `python get-pip.py`
-<br>
+#### First of all you need to have python **3.6** or **above** installed in your system.
+#### Get it from here:&nbsp; **[Python](https://www.python.org/downloads/ "Python")**
+#### Then install pip as: &nbsp; `python get-pip.py`
 
-### Now install following packages one by one:
+#### Now install following packages one by one:
 <br> 
 
 `pip install django`
@@ -42,17 +34,13 @@
 
 `pip install pillow`
 <br>
-<br>
 
 ### **If you wanna avoid this hassle.. there is an alternative ... U can install required packages for the project as..**
-<br>
 
 ```
 pip install -r requirements.txt
 ```
-
 ### Finally after every requirements is satisfied run the project as:
-<br>
 
 ```
 python manage.py runserver
@@ -65,11 +53,7 @@ python manage.py runserver
 
 > If u wanna access admin section Username and Passwords both are:&nbsp; **admin**
 
-<br>
-
 ---
-
-<br>
 
 ## **Some Snapshots:** 
 <br>
@@ -83,16 +67,12 @@ python manage.py runserver
 </p>
 
 <br>
-<br>
 
 ---
 
-<br>
 
-## Do you wanna work on this template ?
+## Wanna work on this template ?
 ### **Download it here:** &nbsp;**[E-Shop e-commerce template](https://colorlib.com/wp/template/e-shop/ "E-Shop")**
-
-<br>
 
 ## **How to contribute to this project:**
 ### 1. Run this project in your pc and if you encounter any errors or bugs feel free to report it 
@@ -100,14 +80,10 @@ python manage.py runserver
 ### 3. Email me at:&ensp;**risingstar3993@gmail.com** for any issues.. your feedback is most welcomed!
 
 <br>
-<br>
 
 > Even after working for days and nights still there are many things left to be implemented in this project ... E-commerce is itself a huge project to complete single-handedly... Nevertheless if u 👍 this project plz give it a ⭐️ ... Motivates me to work further hard!..
-<br>
 
-> Finally !
-<br>
-> Stay Calm..&nbsp; Keep Coding! 😃 
+> Stay happy&nbsp; Stay Calm..&nbsp; Keep Coding! 😃 
 
 
 
