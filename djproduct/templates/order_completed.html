@@ -24,24 +24,24 @@
         <!-- row -->
         <div class="row">
 
-            <div class="col-md-12">
+            <div class="col-md-6">
 
                 <div class="section-title">
                     <h3 class="title">Order Completed</h3>
                 </div>
-                <hr>
-
-                <h2>Dear {{ user.first_name }} {{  user.last_name }}</h2>
+                <br>
+                <h2>Dear, {{ user.first_name }} {{  user.last_name }}</h2>
                 <hr>
                 <h3>Your order has been completed!</h3>
-                <h3>Order Code : #{{ order_code }}</h3>
-                <h3>Thank You for your interest!</h3>
-                <hr>
+                <h4>Order Code:&ensp; <span style="color:crimson;"> #{{ order_code }} </span> </h4>
+                <h4>Thank you for shopping from our site.</h4>
             </div>
+           
         </div>
         <!-- /row -->
     </div>
     <!-- /container -->
+     <br>
 </div>
 <!-- /section -->
 

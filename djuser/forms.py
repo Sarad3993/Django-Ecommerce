@@ -7,7 +7,6 @@ from django.forms import TextInput, Textarea, FileInput , EmailInput
 
 # for updating user information inside auth_user table
 # django gives its default UserChangeForm class which we can call into our class... it is same as UserCreationForm in django used to create new user info
-
 class UserUpdateForm(UserChangeForm):
     class Meta:
         model = User
@@ -21,7 +20,6 @@ class UserUpdateForm(UserChangeForm):
 
 
 # for updating profile information inside djuser_profile table
-
 class UserProfileUpdateForm(forms.ModelForm): 
     class Meta:
         model = UserProfileInfo

@@ -126,7 +126,7 @@ def delete_from_wishlist(request,id):
 
 
 
-# for Orders/Checkout:
+# for CHECKOUT / ORDERS: 
 def order_product(request):
     category = Category.objects.all() # category section is present in all pages so we include here too
     current_user = request.user # Access current user's session information 

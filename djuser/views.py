@@ -10,7 +10,7 @@ from djuser.forms import *
 from django.contrib.auth.forms import PasswordChangeForm
 
 
-# for user account / user profile info section 
+# for user account / user profile info section:
 @login_required(login_url='/user/login') # checks for login
 def index(request):
     category = Category.objects.all()

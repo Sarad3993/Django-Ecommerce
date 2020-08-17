@@ -27,6 +27,7 @@ class Category(MPTTModel):
 
     create_at=models.DateTimeField(auto_now_add=True)
     update_at=models.DateTimeField(auto_now=True)
+    
 
     def __str__(self):
         return self.title
@@ -133,7 +134,6 @@ class User_ReviewsForm(ModelForm):
         fields = ['subject','comment','rating']
 
 
-
 # for shop cart create a new model:
 class Cart(models.Model):
     user = models.ForeignKey(User,on_delete=models.SET_NULL,null=True)
@@ -157,6 +157,7 @@ class Cart(models.Model):
             return self.quantity * self.product.discounted_price
         else:
             return self.quantity * self.product.price 
+
 
 # for adding quantity inside Quantity field in product details page 
 class CartForm(ModelForm):

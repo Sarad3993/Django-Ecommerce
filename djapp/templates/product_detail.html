@@ -83,12 +83,12 @@
 								<i class="fa fa-star{% if product.average_review < 2%}-o empty{% endif%}"></i>
 								<i class="fa fa-star{% if product.average_review < 3%}-o empty{% endif%}"></i>
 								<i class="fa fa-star{% if product.average_review < 4%}-o empty{% endif%}"></i>
-								<i class="fa fa-star{% if product.average_review < 5%}-o empty{% endif%}"></i>
-								<strong>{{ product.average_review |stringformat:".2f"}} </strong>
+								<i class="fa fa-star{% if product.average_review < 5%}-o empty{% endif%}"></i>&nbsp;
+							 <span style="font-weight:bold;color:crimson;"> {{ product.average_review |stringformat:".2f"}} </span> 
 
 							</div>
 
-							<a href="#tab1"> <strong>{{ product.count_review}} </strong> Review(s) | Add your review</a>
+							<a href="#tab1"> <strong>{{ product.count_review}} </strong> <span style="font-weight:bold;"> Review(s) | Add your review</span> </a>
 						</div>
 						<br>
 						<p><strong>Availability: </strong> <span style="color:crimson; font-weight:bold">&nbsp;
@@ -134,7 +134,7 @@
 						<div id="tab1" class="tab-pane fade in active">
 							<p>{{product.details|safe}}</p>
 						</div>
-
+					
 						<div id="tab2" class="tab-pane fade in">
 							<div class="row">
 								<div class="col-md-6">
@@ -142,8 +142,11 @@
 										{% for review in reviews %}
 										<div class="single-review">
 											<div class="review-heading">
-												<div><a href="#"><i class="fa fa-user-o"></i>
-														{{review.user.first_name}}</a></div>
+												<div style="font-weight:bold;font-size:16px;">
+												<i class="fa fa-user">
+												</i>
+												<span style="color:crimson;"> 
+												{{review.user.first_name}}</span>    </div>
 												<div> <strong> {{review.subject}} </strong>
 												</div>
 												<div><i class="fa fa-clock-o"> </i> {{review.create_at}}
@@ -171,12 +174,6 @@
 										</div>
 										{% endfor %}
 
-										<ul class="reviews-pages">
-											<li class="active">1</li>
-											<li><a href="#">2</a></li>
-											<li><a href="#">3</a></li>
-											<li><a href="#"><i class="fa fa-caret-right"></i></a></li>
-										</ul>
 									</div>
 								</div>
 

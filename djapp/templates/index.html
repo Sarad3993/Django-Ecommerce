@@ -17,7 +17,7 @@
 					<img src="{{slide.image.url}}" alt="Error loading image" height="550" width="400">
 					<div class="banner-caption text-center">
 						<h1 style="color:aquamarine; font-size:30px">{{slide.title}}</h1>
-						<h3 class="font-weak" style="color:aquamarine;"> Rs.{{slide.price}}</h3>
+						<h3 class="font-weak" style="color:aquamarine;font-weight:bold;"> Rs.{{slide.price}}</h3>
 						<a href="/product/{{slide.id}}/{{slide.slug}}" class="primary-btn">Shop Now </a>
 					</div>
 				</div>
@@ -78,7 +78,7 @@
 							<i class="fa fa-star{% if product.average_review < 3%}-o empty{% endif%}"></i>
 							<i class="fa fa-star{% if product.average_review < 4%}-o empty{% endif%}"></i>
 							<i class="fa fa-star{% if product.average_review < 5%}-o empty{% endif%}"></i>
-							{{product.average_review|stringformat:".2f"}}/{{product.count_review}}
+							<strong>{{product.average_review|stringformat:".2f"}}/{{product.count_review}}</strong>
 						</div>
 
 						<h2 class="product-name"><a
@@ -136,7 +136,7 @@
 							<i class="fa fa-star{% if product.average_review < 3%}-o empty{% endif%}"></i>
 							<i class="fa fa-star{% if product.average_review < 4%}-o empty{% endif%}"></i>
 							<i class="fa fa-star{% if product.average_review < 5%}-o empty{% endif%}"></i>
-							{{product.average_review|stringformat:".2f"}}/{{product.count_review}}
+							<strong>{{product.average_review|stringformat:".2f"}}/{{product.count_review}} </strong>
 						</div>
 
 						<h2 class="product-name"><a
@@ -196,7 +196,7 @@
 							<i class="fa fa-star{% if p_product.average_review < 3%}-o empty{% endif%}"></i>
 							<i class="fa fa-star{% if p_product.average_review < 4%}-o empty{% endif%}"></i>
 							<i class="fa fa-star{% if p_product.average_review < 5%}-o empty{% endif%}"></i>
-							{{p_product.average_review|stringformat:".2f"}}/{{p_product.count_review}}
+							<strong>{{p_product.average_review|stringformat:".2f"}}/{{p_product.count_review}} </strong>
 						</div>
 
 						<h2 class="product-name"><a

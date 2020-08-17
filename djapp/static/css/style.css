@@ -61,8 +61,7 @@ Table OF Contents
 \*----------------------------*/
 
 body {
-  font-family:'Baloo Bhai 2', cursive;;
-
+  font-family:'Baloo Bhai 2', Helvetica, sans-serif;
   color: black;
   overflow-x: hidden;
   background-color: white;
@@ -323,7 +322,7 @@ textarea.input {
   padding-top: 5px;
   padding-bottom: 5px;
   border-bottom: 1px solid #DADADA;
-  background-color: honeydew;
+  background-color:lavender;
 }
 
 .header-top-links>li {
@@ -857,7 +856,7 @@ textarea.input {
   padding: 5px 15px;
   font-weight: 700;
   color: #FFF;
-  background-color: #30323A;
+  background-color: crimson;
   z-index: 22;
 }
 

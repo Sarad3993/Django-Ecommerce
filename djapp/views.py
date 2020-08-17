@@ -64,6 +64,7 @@ def category_products(request, id, slug):
     context_var = {'category': category, 'products': products}
     return render(request, 'products.html', context_var)
 
+
 # for search functionality
 def search(request): 
     if request.method == 'GET':
@@ -107,18 +108,18 @@ def search_auto_complete(request):
     return HttpResponse(data, mimetype)    
 
 
-# for single product detail 
+# for single product details:
 def product_detail(request, id, slug):
     category = Category.objects.all()
     product = Product.objects.get(pk=id)
     special_offers = Product.objects.filter(special_offer=True).order_by('?')[:4]
     images = Images.objects.filter(product_id=id)
-    reviews = User_Reviews.objects.filter(product_id=id,status='True') # filter those user reviews of that specific product from database whose status is set to True in admin panel 
+    reviews = User_Reviews.objects.filter(product_id=id,status='True') # filter those user reviews of that specific product from database whose status is set to True in admin panel
     context_var = {'category': category, 'product': product,'images':images,'reviews':reviews,'special_offers':special_offers}
     return render(request,'product_detail.html', context_var)
 
  
-# for product user review:
+# for user review/rating:
 def addcomment(request,id):
     url = request.META.get('HTTP_REFERER') # return back to the last url(after user submits review we have to return to same product page)
     if request.method == 'POST':
