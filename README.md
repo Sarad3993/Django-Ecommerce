@@ -66,7 +66,6 @@ python manage.py runserver
 </p>
 
 ---
-<br>
 
 ## **How to contribute to this project:**
 #### 1. Run this project in your pc and if you encounter any errors or bugs feel free to report it 
