@@ -141,20 +141,3 @@ def user_password_change(request):
         return render(request, 'user_password_change.html',context_var) 
 
 
-# for resetting forgotten password:
-def user_password_change(request):
-    if request.method == 'POST':
-        form = PasswordChangeForm(request.user,request.POST) # we have to import PasswordChangeForm form django auth 
-        if form.is_valid(): 
-            user = form.save()
-            update_session_auth_hash(request, user) # session info is changed after password is changed 
-            messages.success(request, 'Your password is successfully updated!')
-            return redirect('/user')
-        else:
-            messages.error(request, 'Please correct the error below: <br>'+ str(form.errors)) 
-            return redirect('/user/change_password')
-    else:
-        category = Category.objects.all()
-        form = PasswordChangeForm(request.user)
-        context_var = {'category':category,'form': form}
-        return render(request, 'user_password_change.html',context_var)
