@@ -1,8 +1,7 @@
 # **Django E-commerce**
 #### *Hello guys! welcome to my django e-commerce project...*
 
-### Wanna see the live preview of this project hosted on pythonanywhere...click [here!](https://saradecommerce.pythonanywhere.com "saradecommerce.pythonanywhere.com")
-
+***
 
 ## What makes this project stand out?
 * Customized interactive admin panel using **bootstrap-admin**... Say bye bye to the default django Admin dashboard
@@ -49,11 +48,11 @@ python manage.py runserver
 ```
 <br>
 
-> Note: &nbsp; If you are still getting errors then either you did something wrong or one/more of the project requirements are still missing...Try to follow all above steps and it should work fine..
+> Note: &nbsp; If you are still getting errors then either you did something wrong or one/more of the project requirements are still missing...Try following all above steps and it should work fine..
 
 <br>
 
-> If u wanna access admin panel on your localhost both Username and Passwords are:&nbsp; **admin**
+> localhost Username and Passwords are:&nbsp; **admin**
 
 ---
 
@@ -77,7 +76,7 @@ python manage.py runserver
 
 <br>
 
-> Even after working for days and nights still there are many things left to be implemented in this project ... E-commerce is itself a huge project to complete single-handedly... Nevertheless if u 👍 this project plz give it a ⭐️.  Motivates me to work further hard!..
+>If u 👍 this project plz give it a ⭐️.  Motivates me to work further hard!..
 
 > Stay happy😃&nbsp; Keep Coding!  
 
